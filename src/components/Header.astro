@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import headerImage from "../assets/header.jpg";
+import * as m from "../paraglide/messages.js";
 ---
 
 <div class="mx-4 max-w-screen-lg pt-10 text-center md:pt-44 lg:mx-auto">
@@ -15,18 +16,17 @@ import headerImage from "../assets/header.jpg";
   >
     Julio —
     <span class="font-sans uppercase">Android Developer</span>
-    at Paninti. Based in
+    {m.at()} Paninti. {m.based_in()}
     <span class="font-sans uppercase">Bandung</span>
   </p>
   <p class="mt-10 max-w-screen-sm text-xl sm:mx-auto">
-    Join me on a journey through my projects from 2020 to 2024. Discover a
-    variety of work, including projects for clients, personal explorations, and
-    contributions to open-source projects. This is more than just a collection
-    of code. It shows my passion for creating innovative and useful apps.
+    {m.landing_page_desc()}
   </p>
-  <div class="mb-32 mt-6 text-xs uppercase flex flex-row justify-center place-items-center">
+  <div
+    class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"
+  >
     <canvas id="scroll-down-canvas" class="h-6 w-6"></canvas>
-    Scroll down
+    {m.scroll_down()}
   </div>
 </div>
 
