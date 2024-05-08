@@ -1,0 +1,27 @@
+---
+import Carousel from "./Carousel.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  techStack: string;
+  images: ImageMetadata[];
+}
+
+const { name, description, techStack, images } = Astro.props;
+---
+
+<div class="mb-36 mt-12 text-center">
+  <Carousel srcs={images} />
+  <p
+    class="mx-4 mb-4 mt-10 max-w-screen-md font-serif text-4xl font-normal md:mx-auto"
+  >
+    {name}
+  </p>
+  <p class="mx-4 mb-6 max-w-screen-md text-xl md:mx-auto">
+    {description}
+  </p>
+  <p class="mx-4 mb-6 max-w-screen-md text-sm uppercase md:mx-auto">
+    {techStack}
+  </p>
+</div>

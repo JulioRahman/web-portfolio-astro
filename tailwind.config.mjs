@@ -9,11 +9,14 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				serif: ['Montagu Slab', ...defaultTheme.fontFamily.serif],
+				serif: ['Montagu Slab Variable', ...defaultTheme.fontFamily.serif],
 			},
 			aspectRatio: {
 				'3/2': '3 / 2',
 				'4/5': '4 / 5',
+			},
+			borderRadius: {
+				'img': '32px',
 			},
 		},
 	},

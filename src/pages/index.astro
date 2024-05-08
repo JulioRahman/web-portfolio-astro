@@ -1,8 +1,18 @@
 ---
-import Navbar from "../components/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Project from "../components/Project.astro";
+import carouselImage from "../assets/carousel.jpg";
 ---
 
 <Layout title="Julio Rahman">
-  <main></main>
+  <main>
+    <Header />
+    <Project
+      name="Paninti"
+      description="Paninti is an online shopping platform that provides the necessities to make your life easier. Paninti offers a variety of products for the needs of mothers and children, as well as lifestyle."
+      techStack="Kotlin, Android Jetpack, Kotlin Coroutines, MVVM, Firebase, Hilt, Room, DataStore, Retrofit, Google Maps, Gradle, Git, Material Design 2"
+      images={[carouselImage, carouselImage, carouselImage]}
+    />
+  </main>
 </Layout>
