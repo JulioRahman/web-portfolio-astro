@@ -1,0 +1,10 @@
+{
+    "$schema": "https://inlang.com/schema/inlang-message-format",
+    "project": "Project",
+    "experience": "Experience",
+    "about": "About",
+    "at": "at",
+    "based_in": "Based in",
+    "landing_page_desc": "Join me on a journey through my projects from 2020 to 2024. Discover a variety of work, including projects for clients, personal explorations, and contributions to open-source projects. \n\nThis is more than just a collection of code. It shows my passion for creating innovative and useful apps.",
+    "scroll_down": "Scroll down"
+}
