@@ -15,6 +15,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/montagu-slab": "^5.0.20",
     "@inlang/paraglide-astro": "^0.1.7",
+    "@rive-app/canvas-lite": "^2.15.4",
     "astro": "^4.7.1",
     "flowbite": "^2.3.0",
     "tailwindcss": "^3.4.3",
