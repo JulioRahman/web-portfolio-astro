@@ -4,10 +4,10 @@ import headerImage from "../assets/header.jpg";
 import * as m from "../paraglide/messages.js";
 ---
 
-<div class="mx-4 max-w-screen-lg pt-10 text-center md:pt-44 lg:mx-auto">
+<div class="mx-4 max-w-screen-lg pt-10 text-center md:pt-24 lg:mx-auto">
   <Image
     src={headerImage}
-    class="rounded-img min-h-32 object-cover"
+    class="min-h-32 rounded-img object-cover"
     loading="eager"
     alt=""
   />
@@ -31,10 +31,22 @@ import * as m from "../paraglide/messages.js";
 </div>
 
 <script>
+  let artboard = "Light";
+  if (
+    localStorage.theme === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    artboard = "Dark";
+  } else {
+    artboard = "Light";
+  }
+
   import * as rive from "@rive-app/canvas-lite";
   const r = new rive.Rive({
     src: "scroll_down.riv",
     canvas: document.getElementById("scroll-down-canvas") as HTMLCanvasElement,
+    artboard: artboard,
     autoplay: true,
     onLoad: () => {
       r.resizeDrawingSurfaceToCanvas();

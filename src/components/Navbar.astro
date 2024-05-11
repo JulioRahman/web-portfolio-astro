@@ -4,7 +4,7 @@ import * as m from "../paraglide/messages.js";
 ---
 
 <nav
-  class="start-0 top-0 z-40 w-full bg-white dark:bg-gray-900 md:fixed md:bg-transparent"
+  class="start-0 top-0 z-40 w-full bg-white md:fixed md:bg-transparent dark:bg-zinc-800 dark:md:bg-transparent"
 >
   <div class="mx-auto flex flex-wrap items-center justify-between p-4">
     <a
@@ -12,41 +12,18 @@ import * as m from "../paraglide/messages.js";
       class="flex items-center space-x-3 rtl:space-x-reverse"
     >
       <span
-        class="self-center whitespace-nowrap rounded-full px-4 text-xl font-normal dark:text-white md:bg-white"
+        class="self-center whitespace-nowrap rounded-full px-0 text-xl font-normal md:bg-white md:px-4 dark:text-white dark:md:bg-zinc-800"
         >Julio Rahman</span
       >
     </a>
-    <button
-      data-collapse-toggle="navbar-default"
-      type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 dark:text-gray-400 md:hidden"
-      aria-controls="navbar-default"
-      aria-expanded="false"
-    >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="h-5 w-5"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 17 14"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 1h15M1 7h15M1 13h15"></path>
-      </svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+    <div class="block w-auto">
       <ul
-        class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 text-lg font-normal dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-4 md:rounded-full md:border-0 md:bg-white md:py-0 md:dark:bg-gray-900 rtl:space-x-reverse"
+        class="mt-0 flex flex-row space-x-4 rounded-full bg-white p-4 py-0 text-lg font-normal rtl:space-x-reverse dark:bg-zinc-800"
       >
         <li>
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
-            class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-gray-500 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
           >
             {m.project()}
           </a>
@@ -57,7 +34,7 @@ import * as m from "../paraglide/messages.js";
               Astro.currentLocale || "en",
               "/experience",
             )}
-            class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-gray-500 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
           >
             {m.experience()}
           </a>
@@ -65,57 +42,97 @@ import * as m from "../paraglide/messages.js";
         <li>
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/about")}
-            class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-gray-500 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
           >
             {m.about()}
           </a>
         </li>
         <li>
           <button
-            id="dropdownNavbarLink"
-            data-dropdown-toggle="dropdownNavbar"
-            class="flex w-full items-center justify-between rounded px-3 py-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-gray-500 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-            >{m.language()}
+            id="dropdownNavbarLanguageButton"
+            data-dropdown-toggle="dropdownNavbarLanguage"
+            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+          >
             <svg
-              class="ms-2.5 h-2.5 w-2.5"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 10 6"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="inline size-5"
             >
               <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 4 4 4-4"></path>
-            </svg></button
-          >
+                d="M7.75 2.75a.75.75 0 0 0-1.5 0v1.258a32.987 32.987 0 0 0-3.599.278.75.75 0 1 0 .198 1.487A31.545 31.545 0 0 1 8.7 5.545 19.381 19.381 0 0 1 7 9.56a19.418 19.418 0 0 1-1.002-2.05.75.75 0 0 0-1.384.577 20.935 20.935 0 0 0 1.492 2.91 19.613 19.613 0 0 1-3.828 4.154.75.75 0 1 0 .945 1.164A21.116 21.116 0 0 0 7 12.331c.095.132.192.262.29.391a.75.75 0 0 0 1.194-.91c-.204-.266-.4-.538-.59-.815a20.888 20.888 0 0 0 2.333-5.332c.31.031.618.068.924.108a.75.75 0 0 0 .198-1.487 32.832 32.832 0 0 0-3.599-.278V2.75Z"
+              ></path>
+              <path
+                fill-rule="evenodd"
+                d="M13 8a.75.75 0 0 1 .671.415l4.25 8.5a.75.75 0 1 1-1.342.67L15.787 16h-5.573l-.793 1.585a.75.75 0 1 1-1.342-.67l4.25-8.5A.75.75 0 0 1 13 8Zm2.037 6.5L13 10.427 10.964 14.5h4.073Z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="inline size-5"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </button>
           <!-- Dropdown menu -->
           <div
-            id="dropdownNavbar"
-            class="z-10 hidden w-44 rounded-lg bg-white font-normal shadow dark:bg-gray-700"
+            id="dropdownNavbarLanguage"
+            class="z-10 hidden rounded-lg bg-white font-normal shadow dark:bg-zinc-700"
           >
             <ul
-              class="py-2 text-sm text-gray-700 dark:text-gray-400"
+              class="py-2 text-sm text-zinc-700 dark:text-zinc-400"
               aria-labelledby="dropdownLargeButton"
             >
               <li>
                 <a
                   href={getRelativeLocaleUrl("en")}
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   >English</a
                 >
               </li>
               <li>
                 <a
                   href={getRelativeLocaleUrl("id")}
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   >Bahasa</a
                 >
               </li>
             </ul>
           </div>
+        </li>
+        <li>
+          <button
+            id="navbarThemeButton"
+            onclick="toggleTheme()"
+            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="inline size-5 dark:hidden"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="hidden size-5 dark:inline"
+            >
+              <path
+                d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"
+              ></path>
+            </svg>
+          </button>
         </li>
       </ul>
     </div>

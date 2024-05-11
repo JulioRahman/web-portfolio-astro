@@ -6,9 +6,11 @@ export default {
 		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
 		'./node_modules/flowbite/**/*.js'
 	],
+	darkMode: 'selector',
 	theme: {
 		extend: {
 			fontFamily: {
+				sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
 				serif: ['Montagu Slab Variable', ...defaultTheme.fontFamily.serif],
 			},
 			aspectRatio: {

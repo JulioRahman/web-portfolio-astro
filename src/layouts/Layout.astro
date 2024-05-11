@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/Navbar.astro";
+import "@fontsource-variable/inter";
 import "@fontsource-variable/montagu-slab";
 
 interface Props {
@@ -12,6 +13,26 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang={Astro.currentLocale}>
   <head>
+    <script is:inline>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      function toggleTheme() {
+        if (localStorage.theme === "dark") {
+          localStorage.theme = "light";
+        } else {
+          localStorage.theme = "dark";
+        }
+        window.location.reload();
+      }
+    </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
@@ -19,7 +40,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-white dark:bg-zinc-800">
     <Navbar />
     <slot />
     <script
