@@ -139,13 +139,15 @@ import * as m from "../paraglide/messages.js";
 </nav>
 
 <script>
-  document
-    .getElementById("navbarThemeButton")
-    ?.addEventListener("click", toggleTheme);
+  document.addEventListener("astro:page-load", () => {
+    document
+      .getElementById("navbarThemeButton")
+      ?.addEventListener("click", toggleTheme);
 
-  function toggleTheme() {
-    const theme = localStorage.theme === "dark" ? "light" : "dark";
-    localStorage.theme = theme;
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }
+    function toggleTheme() {
+      const theme = localStorage.theme === "dark" ? "light" : "dark";
+      localStorage.theme = theme;
+      document.documentElement.classList.toggle("dark", theme === "dark");
+    }
+  });
 </script>

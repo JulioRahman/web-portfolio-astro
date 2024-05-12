@@ -31,25 +31,20 @@ import * as m from "../paraglide/messages.js";
 </div>
 
 <script>
-  let artboard = "Light";
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    artboard = "Dark";
-  } else {
-    artboard = "Light";
-  }
-
   import * as rive from "@rive-app/canvas-lite";
-  const r = new rive.Rive({
-    src: "scroll_down.riv",
-    canvas: document.getElementById("scroll-down-canvas") as HTMLCanvasElement,
-    artboard: artboard,
-    autoplay: true,
-    onLoad: () => {
-      r.resizeDrawingSurfaceToCanvas();
-    },
+
+  document.addEventListener("astro:page-load", () => {
+    let artboard = localStorage.theme === "dark" ? "Dark" : "Light";
+    const r = new rive.Rive({
+      src: "scroll_down.riv",
+      canvas: document.getElementById(
+        "scroll-down-canvas",
+      ) as HTMLCanvasElement,
+      artboard: artboard,
+      autoplay: true,
+      onLoad: () => {
+        r.resizeDrawingSurfaceToCanvas();
+      },
+    });
   });
 </script>
