@@ -23,15 +23,6 @@ const { title } = Astro.props;
       } else {
         document.documentElement.classList.remove("dark");
       }
-
-      function toggleTheme() {
-        if (localStorage.theme === "dark") {
-          localStorage.theme = "light";
-        } else {
-          localStorage.theme = "dark";
-        }
-        window.location.reload();
-      }
     </script>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
