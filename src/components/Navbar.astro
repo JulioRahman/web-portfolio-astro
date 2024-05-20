@@ -3,9 +3,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import * as m from "../paraglide/messages.js";
 ---
 
-<nav
-  class="start-0 top-0 z-40 w-full bg-white md:fixed md:bg-transparent dark:bg-zinc-800 dark:md:bg-transparent"
->
+<nav class="start-0 top-0 z-40 w-full bg-transparent md:fixed">
   <div class="mx-auto flex flex-wrap items-center justify-between p-4">
     <a
       href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
@@ -18,12 +16,12 @@ import * as m from "../paraglide/messages.js";
     </a>
     <div class="block w-auto">
       <ul
-        class="mt-0 flex flex-row space-x-4 rounded-full bg-white p-4 py-0 text-lg font-normal rtl:space-x-reverse dark:bg-zinc-800"
+        class="flex flex-row space-x-4 rounded-full bg-white px-0 text-lg font-normal md:px-4 rtl:space-x-reverse dark:bg-zinc-800"
       >
         <li>
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
-            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+            class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             {m.project()}
           </a>
@@ -34,7 +32,7 @@ import * as m from "../paraglide/messages.js";
               Astro.currentLocale || "en",
               "/experience",
             )}
-            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+            class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             {m.experience()}
           </a>
@@ -42,16 +40,42 @@ import * as m from "../paraglide/messages.js";
         <li>
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/about")}
-            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+            class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             {m.about()}
           </a>
         </li>
-        <li>
+        <li
+          x-data=`{
+            open: false,
+            toggle() {
+                if (this.open) {
+                    return this.close()
+                }
+ 
+                this.$refs.button.focus()
+ 
+                this.open = true
+            },
+            close(focusAfter) {
+                if (! this.open) return
+ 
+                this.open = false
+ 
+                focusAfter && focusAfter.focus()
+            }
+          }`
+          x-on:keydown.escape.prevent.stop="close($refs.button)"
+          x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+          x-id="['dropdown-button']"
+        >
           <button
-            id="dropdownNavbarLanguageButton"
-            data-dropdown-toggle="dropdownNavbarLanguage"
-            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+            x-ref="button"
+            x-on:click="toggle()"
+            :aria-expanded="open"
+            :aria-controls="$id('dropdown-button')"
+            type="button"
+            class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,8 +105,13 @@ import * as m from "../paraglide/messages.js";
           </button>
           <!-- Dropdown menu -->
           <div
-            id="dropdownNavbarLanguage"
-            class="z-10 hidden rounded-lg bg-white font-normal shadow dark:bg-zinc-700"
+            x-ref="panel"
+            x-show="open"
+            x-transition.origin.top.left
+            x-on:click.outside="close($refs.button)"
+            :id="$id('dropdown-button')"
+            style="display: none;"
+            class="absolute z-10 rounded-lg bg-white font-normal shadow dark:bg-zinc-700"
           >
             <ul
               class="py-2 text-sm text-zinc-700 dark:text-zinc-400"
@@ -108,7 +137,7 @@ import * as m from "../paraglide/messages.js";
         <li>
           <button
             id="navbarThemeButton"
-            class="block rounded px-3 py-2 text-zinc-900 hover:bg-zinc-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-zinc-500 dark:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-zinc-500"
+            class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
