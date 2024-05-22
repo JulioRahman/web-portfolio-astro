@@ -1,9 +1,9 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
     "language": "Bahasa",
-    "project": "Proyek",
-    "experience": "Pengalaman",
-    "experience_s": "Pengalaman {s}",
+    "projects": "Proyek",
+    "experiences": "Pengalaman",
+    "experiences_s": "Pengalaman {s}",
     "about": "Tentang",
     "about_s": "Tentang {s}",
     "at": "di",
