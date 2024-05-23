@@ -1,0 +1,44 @@
+---
+import * as m from "../paraglide/messages.js";
+---
+
+<section class="mx-4 max-w-screen-lg pt-10 text-center md:pt-24 lg:mx-auto">
+  <p
+    class="mt-10 max-w-screen-md break-words font-serif text-5xl font-light tracking-tighter text-zinc-900 md:mx-auto md:text-7xl dark:text-white"
+  >
+    My <span class="font-sans uppercase">Experiences</span> and
+    <span class="font-sans uppercase">Organizations</span>
+  </p>
+  <p
+    class="mt-10 max-w-screen-sm text-xl text-zinc-600 sm:mx-auto dark:text-zinc-400"
+  >
+    I have been involved in a variety of organizations and have had a number of
+    experiences that have shaped me into the person I am today. Here are a few
+    of them.
+  </p>
+  <div
+    class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"
+  >
+    <canvas id="scroll-down-canvas" class="size-6"></canvas>
+    {m.scroll_down()}
+  </div>
+</section>
+
+<script>
+  import { Rive } from "@rive-app/canvas-lite";
+
+  document.addEventListener("astro:page-load", () => {
+    let artboard = localStorage.theme === "dark" ? "Dark" : "Light";
+    const r = new Rive({
+      src: "../scroll_down.riv",
+      canvas: document.getElementById(
+        "scroll-down-canvas",
+      ) as HTMLCanvasElement,
+      artboard: artboard,
+      autoplay: true,
+      onLoad: () => {
+        r.resizeDrawingSurfaceToCanvas();
+      },
+    });
+  });
+</script>

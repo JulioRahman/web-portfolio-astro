@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import * as m from "../paraglide/messages.js";
+
+interface Props {
+  image: ImageMetadata;
+  logo: ImageMetadata;
+  name: string;
+  date: string;
+  description: string;
+  notes: string;
+}
+
+const { image, logo, name, date, description, notes } = Astro.props;
+---
+
+<section
+  class="mb-36 mt-12 max-w-screen-lg pt-10 text-center sm:mx-auto sm:text-start"
+>
+  <div
+    class="mx-0 flex flex-col items-start gap-6 sm:mx-8 sm:flex-row sm:gap-12"
+  >
+    <div class="flex max-w-screen-sm items-center justify-center">
+      <Image
+        src={image}
+        class="aspect-[4/5] min-w-[240px] rounded-none object-cover sm:rounded-img md:min-w-[320px]"
+        loading="lazy"
+        alt=""
+      />
+    </div>
+    <div class="mx-8 space-y-4 sm:mx-0">
+      <Image
+        src={logo}
+        class="mx-auto max-h-16 w-auto object-contain sm:mx-0"
+        loading="lazy"
+        alt=""
+      />
+      <h3
+        class="font-serif text-4xl font-normal text-zinc-900 dark:text-zinc-50"
+      >
+        {name}
+        <span class="whitespace-nowrap text-lg">({date})</span>
+      </h3>
+      <p class="text-xl">
+        {description}
+      </p>
+      <p class="text-sm uppercase">
+        {notes}
+      </p>
+    </div>
+  </div>
+</section>

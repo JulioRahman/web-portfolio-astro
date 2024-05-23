@@ -1,11 +1,61 @@
 ---
+import Experience from "../components/Experience.astro";
 import TopTitle from "../components/TopTitle.astro";
 import Layout from "../layouts/Layout.astro";
 import * as m from "../paraglide/messages.js";
+import carouselImage from "../assets/carousel.jpg";
 ---
 
 <Layout title={m.experiences_s({ s: " — Julio Rahman" })}>
   <main>
     <TopTitle />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="Paninti"
+      date="2022-Present"
+      description="Deket rumahku ada tempat yang namanya Paninti. Paninti adalah tempat yang sangat indah. Di sana ada banyak pohon-pohon yang tinggi dan rindang. Ada juga sungai yang jernih dan sejuk. Di sekitar sungai ada banyak batu-batu besar yang bisa dijadikan tempat duduk. Di sana juga ada banyak ikan yang berenang-renang di sungai. Paninti adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Fulltime · Bandung and Jakarta · On-site"
+    />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="Samudera Indonesia"
+      date="2020-2022"
+      description="Samudera Indonesia adalah tempat yang sangat indah. Di sana ada banyak ikan-ikan yang berenang-renang di laut. Ada juga banyak kapal-kapal yang berlayar di laut. Di sekitar laut ada banyak pulau-pulau yang indah. Di sana juga ada banyak pantai yang luas dan bersih. Samudera Indonesia adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Fulltime · Jakarta · Hybrid"
+    />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="Tujuh Sembilan"
+      date="2020-2021"
+      description="Tujuh Sembilan adalah tempat yang sangat indah. Di sana ada banyak pohon-pohon yang tinggi dan rindang. Ada juga sungai yang jernih dan sejuk. Di sekitar sungai ada banyak batu-batu besar yang bisa dijadikan tempat duduk. Di sana juga ada banyak ikan yang berenang-renang di sungai. Tujuh Sembilan adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Outsourced"
+    />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="Eudeka"
+      date="2019"
+      description="Eudeka adalah tempat yang sangat indah. Di sana ada banyak pohon-pohon yang tinggi dan rindang. Ada juga sungai yang jernih dan sejuk. Di sekitar sungai ada banyak batu-batu besar yang bisa dijadikan tempat duduk. Di sana juga ada banyak ikan yang berenang-renang di sungai. Eudeka adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Internship · Bandung · On-site"
+    />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="GITS Indonesia"
+      date="2019"
+      description="GITS Indonesia adalah tempat yang sangat indah. Di sana ada banyak pohon-pohon yang tinggi dan rindang. Ada juga sungai yang jernih dan sejuk. Di sekitar sungai ada banyak batu-batu besar yang bisa dijadikan tempat duduk. Di sana juga ada banyak ikan yang berenang-renang di sungai. GITS Indonesia adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Internship · Bandung · On-site"
+    />
+    <Experience
+      image={carouselImage}
+      logo={carouselImage}
+      name="Bandung Local Guides"
+      date="2019-Present"
+      description="GITS Indonesia adalah tempat yang sangat indah. Di sana ada banyak pohon-pohon yang tinggi dan rindang. Ada juga sungai yang jernih dan sejuk. Di sekitar sungai ada banyak batu-batu besar yang bisa dijadikan tempat duduk. Di sana juga ada banyak ikan yang berenang-renang di sungai. GITS Indonesia adalah tempat yang sangat indah untuk bermain dan berenang."
+      notes="Volunteer · Bandung"
+    />
   </main>
 </Layout>
