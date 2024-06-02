@@ -5,6 +5,11 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://juliorahman.dev",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "id"],
+  },
   integrations: [
     alpinejs(),
     tailwind(),
@@ -13,8 +18,4 @@ export default defineConfig({
       outdir: "./src/paraglide",
     }),
   ],
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "id"],
-  },
 });
