@@ -19,7 +19,7 @@ import * as m from "../paraglide/messages.js";
   <div
     class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"
   >
-    <canvas id="scroll-down-canvas" class="size-6"></canvas>
+    <canvas id="scroll-down-canvas" class="size-6 dark:invert"></canvas>
     {m.scroll_down()}
   </div>
 </section>
@@ -28,13 +28,11 @@ import * as m from "../paraglide/messages.js";
   import { Rive } from "@rive-app/canvas-lite";
 
   document.addEventListener("astro:page-load", () => {
-    let artboard = localStorage.theme === "dark" ? "Dark" : "Light";
     const r = new Rive({
       src: "../scroll_down.riv",
       canvas: document.getElementById(
         "scroll-down-canvas",
       ) as HTMLCanvasElement,
-      artboard: artboard,
       autoplay: true,
       onLoad: () => {
         r.resizeDrawingSurfaceToCanvas();
