@@ -1,17 +1,25 @@
 ---
 import { Image } from "astro:assets";
-import * as m from "../paraglide/messages.js";
 
 interface Props {
-  image: ImageMetadata;
+  videoSrc: string;
   logo: ImageMetadata;
+  logoDark?: ImageMetadata;
   name: string;
   date: string;
   description: string;
   notes: string;
 }
 
-const { image, logo, name, date, description, notes } = Astro.props;
+const {
+  videoSrc,
+  logo,
+  logoDark = null,
+  name,
+  date,
+  description,
+  notes,
+} = Astro.props;
 ---
 
 <section
@@ -21,20 +29,45 @@ const { image, logo, name, date, description, notes } = Astro.props;
     class="mx-0 flex flex-col items-start gap-6 sm:mx-8 sm:flex-row sm:gap-12"
   >
     <div class="flex max-w-screen-sm items-center justify-center">
-      <Image
-        src={image}
+      <video
         class="aspect-[4/5] min-w-[240px] rounded-none object-cover sm:rounded-img md:min-w-[320px]"
-        loading="lazy"
-        alt=""
-      />
+        autoplay
+        disablepictureinpicture
+        disableRemotePlayback
+        x-webkit-airplay="deny"
+        loop
+        muted
+        playsinline
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
     </div>
-    <div class="mx-8 space-y-4 sm:mx-0">
-      <Image
-        src={logo}
-        class="mx-auto max-h-16 w-auto object-contain sm:mx-0"
-        loading="lazy"
-        alt=""
-      />
+    <div class="mx-8 mt-0 space-y-4 sm:mx-0 sm:mt-8">
+      {
+        logoDark ? (
+          <div>
+            <Image
+              src={logo}
+              class="mx-auto block max-h-12 w-auto max-w-32 object-contain sm:mx-0 dark:hidden"
+              loading="lazy"
+              alt=""
+            />
+            <Image
+              src={logoDark}
+              class="mx-auto hidden max-h-12 w-auto max-w-32 object-contain sm:mx-0 dark:block"
+              loading="lazy"
+              alt=""
+            />
+          </div>
+        ) : (
+          <Image
+            src={logo}
+            class="mx-auto max-h-12 w-auto max-w-32 object-contain sm:mx-0"
+            loading="lazy"
+            alt=""
+          />
+        )
+      }
       <h3
         class="font-serif text-4xl font-normal text-zinc-900 dark:text-zinc-50"
       >
