@@ -1,6 +1,10 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
 import * as m from "../paraglide/messages.js";
+
+function getLastSegment(url: string): string {
+  return url.split("/").slice(-2, -1)[0];
+}
 ---
 
 <nav class="start-0 top-0 z-40 w-full bg-transparent md:fixed">
@@ -167,14 +171,20 @@ import * as m from "../paraglide/messages.js";
             >
               <li>
                 <a
-                  href={getRelativeLocaleUrl("en")}
+                  href={getRelativeLocaleUrl(
+                    "en",
+                    getLastSegment(Astro.request.url),
+                  )}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   >English</a
                 >
               </li>
               <li>
                 <a
-                  href={getRelativeLocaleUrl("id")}
+                  href={getRelativeLocaleUrl(
+                    "id",
+                    getLastSegment(Astro.request.url),
+                  )}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   >Bahasa</a
                 >
