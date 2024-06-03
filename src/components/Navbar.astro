@@ -16,6 +16,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
     <a
       href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
       class="flex items-center space-x-3 rtl:space-x-reverse"
+      aria-label={m.juliorahman_aria_label()}
     >
       <span
         class="self-center whitespace-nowrap rounded-full px-0 text-xl font-normal md:bg-white md:px-4 dark:text-white dark:md:bg-zinc-800"
@@ -30,6 +31,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
+            aria-label={m.projects()}
           >
             <span class="hidden md:inline">
               {m.projects()}
@@ -57,6 +59,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
               "/experiences",
             )}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
+            aria-label={m.experiences()}
           >
             <span class="hidden md:inline">
               {m.experiences()}
@@ -81,6 +84,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
           <a
             href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/about")}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
+            aria-label={m.about()}
           >
             <span class="hidden md:inline">
               {m.about()}
@@ -132,6 +136,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
             :aria-controls="$id('dropdown-button')"
             type="button"
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
+            title={m.change_language_button_title()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -177,14 +182,14 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
                 <a
                   href={getRelativeLocaleUrl("en", currentPathWithoutLanguage)}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
-                  >English</a
+                  aria-label="English">English</a
                 >
               </li>
               <li>
                 <a
                   href={getRelativeLocaleUrl("id", currentPathWithoutLanguage)}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
-                  >Bahasa</a
+                  aria-label="Bahasa">Bahasa</a
                 >
               </li>
             </ul>
@@ -201,6 +206,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
             }`
             @click="toggleTheme()"
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
+            title={m.toggle_dark_mode_button_title()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
