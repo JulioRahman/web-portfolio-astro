@@ -29,18 +29,6 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
 <!doctype html>
 <html lang={languageTag()}>
   <head>
-    <script is:inline data-astro-rerun>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,6 +55,19 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
   <body class="bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-200">
     <Navbar />
     <slot />
+    <script is:inline data-astro-rerun>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        localStorage.theme = "dark";
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.theme = "light";
+      }
+    </script>
     <script src="../scripts/index.ts"></script>
   </body>
 </html>
