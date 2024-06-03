@@ -121,13 +121,13 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
                 focusAfter && focusAfter.focus()
             }
           }`
-          x-on:keydown.escape.prevent.stop="close($refs.button)"
-          x-on:focusin.window="! $refs.panel.contains($event.target) && close()"
+          @keydown.escape.prevent.stop="close($refs.button)"
+          @focusin.window="! $refs.panel.contains($event.target) && close()"
           x-id="['dropdown-button']"
         >
           <button
             x-ref="button"
-            x-on:click="toggle()"
+            @click="toggle()"
             :aria-expanded="open"
             :aria-controls="$id('dropdown-button')"
             type="button"
@@ -164,7 +164,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
             x-ref="panel"
             x-show="open"
             x-transition.origin.top.left
-            x-on:click.outside="close($refs.button)"
+            @click.outside="close($refs.button)"
             :id="$id('dropdown-button')"
             style="display: none;"
             class="absolute z-10 rounded-lg bg-white font-normal shadow dark:bg-zinc-700"
@@ -192,7 +192,14 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
         </li>
         <li>
           <button
-            id="navbarThemeButton"
+            x-data=`{
+              toggleTheme() {
+                const theme = localStorage.theme === "dark" ? "light" : "dark";
+                localStorage.theme = theme;
+                document.documentElement.classList.toggle("dark", theme === "dark");
+              }
+            }`
+            @click="toggleTheme()"
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
           >
             <svg
@@ -222,17 +229,3 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
     </div>
   </div>
 </nav>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    document
-      .getElementById("navbarThemeButton")
-      ?.addEventListener("click", toggleTheme);
-
-    function toggleTheme() {
-      const theme = localStorage.theme === "dark" ? "light" : "dark";
-      localStorage.theme = theme;
-      document.documentElement.classList.toggle("dark", theme === "dark");
-    }
-  });
-</script>
