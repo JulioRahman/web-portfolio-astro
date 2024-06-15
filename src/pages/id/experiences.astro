@@ -16,7 +16,10 @@ import bandungLocalGuidesLogo from "../../assets/logo-bandung-local-guides.svg";
 
 <Layout title={m.experiences_s({ s: " — Julio Rahman" })}>
   <main>
-    <TopTitle />
+    <TopTitle
+      titleRawHTMLString={m.xp_top_title()}
+      description={m.xp_top_title_desc()}
+    />
     <Experience
       videoSrc="../../video-paninti.mp4"
       logo={panintiLogo}
