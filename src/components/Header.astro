@@ -27,7 +27,10 @@ import * as m from "../paraglide/messages.js";
   <div
     class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"
   >
-    <canvas id="scroll-down-canvas" class="size-6 dark:invert"></canvas>
+    <canvas
+      id="scroll-down-canvas"
+      class="size-6 dark:invert"
+      transition:persist></canvas>
     {m.scroll_down()}
   </div>
 </div>
