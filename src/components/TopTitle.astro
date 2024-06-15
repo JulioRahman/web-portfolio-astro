@@ -6,15 +6,12 @@ import * as m from "../paraglide/messages.js";
   <p
     class="mt-10 max-w-screen-md break-words font-serif text-5xl font-light tracking-tighter text-zinc-900 md:mx-auto md:text-7xl dark:text-white"
   >
-    My Professional <span class="font-sans uppercase">Experiences</span>
+    <Fragment set:html={m.xp_top_title()} />
   </p>
   <p
     class="mt-10 max-w-screen-sm text-xl text-zinc-600 sm:mx-auto dark:text-zinc-400"
   >
-    Explore the various experiences that have helped shape my career path. From
-    working at companies to being part of community organizations, I've gained
-    valuable skills and knowledge. Here are some highlights of my professional
-    journey so far.
+    {m.xp_top_title_desc()}
   </p>
   <div
     class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"

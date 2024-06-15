@@ -2,7 +2,9 @@
 import Experience from "../components/Experience.astro";
 import TopTitle from "../components/TopTitle.astro";
 import Layout from "../layouts/Layout.astro";
+
 import * as m from "../paraglide/messages.js";
+
 import panintiLogo from "../assets/logo-paninti.svg";
 import samuderaIndonesiaLogo from "../assets/logo-samudera-indonesia.png";
 import tujuhSembilanLogo from "../assets/logo-tujuh-sembilan.svg";
@@ -19,53 +21,53 @@ import bandungLocalGuidesLogo from "../assets/logo-bandung-local-guides.svg";
       videoSrc="../video-paninti.mp4"
       logo={panintiLogo}
       name="Paninti"
-      date="2022-Present"
-      description="Working at Paninti has been a great experience, with the company's office being just a 15-minute commute from my home. I even had the chance to work at their Jakarta office for 5 months. The environment is youthful and energetic, with many employees around my age. I particularly enjoy being able to develop user-friendly applications for Paninti's products."
-      notes="Fulltime · Bandung and Jakarta · On-site"
+      date={m.xp_paninti_date()}
+      description={m.xp_paninti_desc()}
+      notes={m.xp_paninti_notes()}
       isEager
     />
     <Experience
       videoSrc="../video-samudera.mp4"
       logo={samuderaIndonesiaLogo}
       name="Samudera Indonesia"
-      date="2020-2022"
-      description="My first full-time job after internships, introduced me to working in Jakarta while living in a rented room. Despite joining during COVID-19 in 2020, with work-from-home and hybrid setups in 2021, I found a familial environment at this well-established company. However, their outdated tech stack limited exploration of modern technologies I was interested in."
-      notes="Fulltime · Jakarta · Hybrid"
+      date={m.xp_samudera_date()}
+      description={m.xp_samudera_desc()}
+      notes={m.xp_samudera_notes()}
       isRightSide
     />
     <Experience
       videoSrc="../video-79.mp4"
       logo={tujuhSembilanLogo}
       name="Tujuh Sembilan (79)"
-      date="2020-2021"
-      description="79 operates as an agency that hires individuals and outsources them to suitable client companies after providing training. In my case, I went through their 3-month bootcamp for 2 weeks before being placed at Praweda (Samudera Indonesia). Even after the outsourcing, 79 continued to provide monthly mentorship alongside my work experience there."
-      notes="Outsourced"
+      date={m.xp_79_date()}
+      description={m.xp_79_desc()}
+      notes={m.xp_79_notes()}
     />
     <Experience
       videoSrc="../video-gits.mp4"
       logo={gitsIndonesiaLogo}
       logoDark={gitsIndonesiaLogoDark}
       name="GITS Indonesia"
-      date="2019"
-      description="My 6-month PKL (internship) at GITS Indonesia was my first professional experience after studying software engineering at SMK (vocational high school). It exposed me to cutting-edge technologies and a vibrant work culture vastly different from school, easing my transition into the professional world."
-      notes="Internship · Bandung · On-site"
+      date={m.xp_gits_date()}
+      description={m.xp_gits_desc()}
+      notes={m.xp_gits_notes()}
       isRightSide
     />
     <Experience
       videoSrc="../video-eudeka.mp4"
       logo={eudekaLogo}
       name="Eudeka!"
-      date="2019"
-      description="During my internship at GITS Indonesia, I had the opportunity to contribute to their subsidiary Eudeka. The small team at Eudeka fostered a close-knit and fun-loving environment. Beyond coding, I gained valuable skills in teaching, creating educational content, and designing Instagram posts using Figma."
-      notes="Internship · Bandung · On-site"
+      date={m.xp_eudeka_date()}
+      description={m.xp_eudeka_desc()}
+      notes={m.xp_eudeka_notes()}
     />
     <Experience
       videoSrc="../video-blg.mp4"
       logo={bandungLocalGuidesLogo}
       name="Bandung Local Guides"
-      date="2019-Present"
-      description="This community has been an exciting part of my journey since high school days, stemming from casually writing reviews on Google Maps. This vibrant group allows us to explore new places around Bandung, help others through Google Maps contributions, and receive exclusive perks - all while being part of a passionate network with constant communication via a buzzing WhatsApp group."
-      notes="Volunteer · Bandung"
+      date={m.xp_blg_date()}
+      description={m.xp_blg_desc()}
+      notes={m.xp_blg_notes()}
       isRightSide
     />
   </main>
