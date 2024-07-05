@@ -21,7 +21,7 @@
     "@rive-app/canvas-lite": "^2.15.4",
     "@types/alpinejs": "^3.13.10",
     "alpinejs": "^3.13.10",
-    "astro": "^4.10.2",
+    "astro": "^4.11.5",
     "embla-carousel": "^8.0.4",
     "embla-carousel-autoplay": "^8.0.4",
     "tailwindcss": "^3.4.3",
