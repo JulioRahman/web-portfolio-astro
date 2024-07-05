@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 
 interface Props {
   srcs: ImageMetadata[];
@@ -9,13 +9,13 @@ const { srcs } = Astro.props;
 ---
 
 <div
-  class="embla mx-auto aspect-[3/2] w-full max-w-screen-lg cursor-grab overflow-hidden rounded-none active:cursor-grabbing lg:rounded-img"
+  class="embla mx-auto aspect-[3/2] w-full max-w-screen-md cursor-grab overflow-hidden rounded-none active:cursor-grabbing md:rounded-img"
 >
   <div class="flex">
     {
       srcs.map((src) => (
         <div class="min-w-0 shrink-0 grow-0 basis-full">
-          <Image src={src} class="w-full" loading="eager" alt="" />
+          <Picture src={src} class="w-full" loading="eager" alt="" />
         </div>
       ))
     }
