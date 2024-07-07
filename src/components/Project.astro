@@ -1,27 +1,41 @@
 ---
 import Carousel from "./Carousel.astro";
+import "../styles/embla.css";
 
 interface Props {
   name: string;
   description: string;
-  techStack: string;
+  techStack: string[];
   images: ImageMetadata[];
 }
 
 const { name, description, techStack, images } = Astro.props;
 ---
 
-<div class="mb-36 mt-12 text-center">
+<div class="rounded-img border border-zinc-950/20 dark:border-white/20">
   <Carousel srcs={images} />
-  <p
-    class="mx-4 mb-4 mt-10 max-w-screen-md font-serif text-4xl font-normal text-zinc-900 md:mx-auto dark:text-zinc-50"
-  >
-    {name} · <span class="carousel-project-indicator"></span>
-  </p>
-  <p class="mx-4 mb-6 max-w-screen-md text-xl md:mx-auto">
-    {description}
-  </p>
-  <p class="mx-4 mb-6 max-w-screen-md text-sm uppercase md:mx-auto">
-    {techStack}
-  </p>
+  <div class="space-y-4 p-6">
+    <div>
+      <div class="flex flex-row justify-between">
+        <h3
+          class="font-serif text-4xl font-normal text-zinc-900 dark:text-zinc-50"
+        >
+          {name}
+        </h3>
+        <div class="embla__dots"></div>
+      </div>
+      <p class="pt-2 text-xl">{description}</p>
+    </div>
+    <div>
+      <ul class="mt-2 flex flex-wrap gap-2">
+        {
+          techStack.map((item) => (
+            <li class="rounded-full border border-zinc-950/30 px-3 py-1 text-sm dark:border-white/30">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </div>

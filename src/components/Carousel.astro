@@ -9,7 +9,7 @@ const { srcs } = Astro.props;
 ---
 
 <div
-  class="embla mx-auto aspect-[3/2] w-full max-w-screen-md cursor-grab overflow-hidden rounded-none active:cursor-grabbing md:rounded-img"
+  class="embla aspect-[3/2] rounded-t-img cursor-grab overflow-hidden active:cursor-grabbing"
 >
   <div class="flex">
     {
@@ -21,40 +21,3 @@ const { srcs } = Astro.props;
     }
   </div>
 </div>
-
-<script>
-  import EmblaCarousel, { type EmblaOptionsType } from "embla-carousel";
-  import Autoplay, { type AutoplayOptionsType } from "embla-carousel-autoplay";
-
-  document.addEventListener("astro:page-load", () => {
-    const emblaNodes = [].slice.call(document.querySelectorAll(".embla"));
-    const emblaOptions: EmblaOptionsType = { loop: true };
-    const autoplayOptions: AutoplayOptionsType = { delay: 5000 };
-
-    const indicatorNodes = document.querySelectorAll(
-      ".carousel-project-indicator",
-    );
-
-    const emblaCarousels = emblaNodes.map(function (emblaNode) {
-      return EmblaCarousel(emblaNode, emblaOptions, [
-        Autoplay(autoplayOptions),
-      ]);
-    });
-
-    const setIndicator = (): void => {
-      indicatorNodes.forEach((node, i) => {
-        node.innerHTML =
-          (emblaCarousels[i].selectedScrollSnap() + 1).toString() +
-          "/" +
-          emblaCarousels[i].slideNodes().length.toString();
-      });
-    };
-
-    emblaCarousels.forEach((carousel) => {
-      carousel
-        .on("init", setIndicator)
-        .on("reInit", setIndicator)
-        .on("select", setIndicator);
-    });
-  });
-</script>
