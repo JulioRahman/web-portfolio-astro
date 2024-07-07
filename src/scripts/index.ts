@@ -34,7 +34,9 @@ document.addEventListener("astro:page-load", () => {
 
 
   dotsNodes.forEach((node, i) => {
-    const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(emblaCarousels[i], node);
-    emblaCarousels[i].on('destroy', removeDotBtnsAndClickHandlers)
+    if (emblaCarousels[i].scrollSnapList().length > 1) {
+      const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(emblaCarousels[i], node);
+      emblaCarousels[i].on('destroy', removeDotBtnsAndClickHandlers)
+    }
   });
 });
