@@ -2,17 +2,62 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Project from "../../components/Project.astro";
+
 import carouselImage from "../../assets/carousel.jpg";
+
+import panintiImage1 from "../../assets/project-paninti-1.png";
+import panintiImage2 from "../../assets/project-paninti-2.png";
+import parentingHubImage1 from "../../assets/project-parenting-hub-1.png";
+import parentingHubImage2 from "../../assets/project-parenting-hub-2.png";
+import kocequImage2 from "../../assets/project-kocequ-2.png";
+import lezatImage1 from "../../assets/project-lezat-1.png";
+import lezatImage2 from "../../assets/project-lezat-2.png";
 ---
 
 <Layout title="Julio Rahman">
-  <main>
+  <main class="p-4 md:p-10">
     <Header />
-    <Project
-      name="Paninti"
-      description="Paninti is an online shopping platform that provides the necessities to make your life easier. Paninti offers a variety of products for the needs of mothers and children, as well as lifestyle."
-      techStack="Kotlin, Android Jetpack, Kotlin Coroutines, MVVM, Firebase, Hilt, Room, DataStore, Retrofit, Google Maps, Gradle, Git, Material Design 2"
-      images={[carouselImage, carouselImage, carouselImage]}
-    />
+    <div class="mx-auto grid max-w-4xl gap-12">
+      <Project
+        name="Paninti App"
+        description="Paninti is an online shopping platform that provides the necessities to make your life easier. Paninti offers a variety of products for the needs of mothers and children, as well as lifestyle."
+        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Google Maps, Git, Material Design 2".split(
+          ", ",
+        )}
+        images={[panintiImage1, panintiImage2]}
+      />
+      <Project
+        name="Parenting Hub"
+        description="Sosmed"
+        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Git, Material Design 2".split(
+          ", ",
+        )}
+        images={[parentingHubImage1, parentingHubImage2]}
+      />
+      <Project
+        name="Paninti Super App"
+        description="Fusion Paninti and Parenting Hub"
+        techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Git, Material Design 3".split(
+          ", ",
+        )}
+        images={[carouselImage, carouselImage, carouselImage]}
+      />
+      <Project
+        name="Kocequ"
+        description="Fintech"
+        techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Git, Biometrics, Material Design 2".split(
+          ", ",
+        )}
+        images={[kocequImage2]}
+      />
+      <Project
+        name="Lezat"
+        description="Recipe App"
+        techStack={"Kotlin, Android Jetpack, MVVM, Git, Material Design 2".split(
+          ", ",
+        )}
+        images={[lezatImage1, lezatImage2]}
+      />
+    </div>
   </main>
 </Layout>
