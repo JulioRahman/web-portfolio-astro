@@ -11,7 +11,7 @@ export default defineConfig({
     locales: ["en", "id"],
   },
   integrations: [
-    alpinejs(),
+    alpinejs({ entrypoint: '/src/entrypoint' }),
     tailwind(),
     paraglide({
       project: "./project.inlang",
