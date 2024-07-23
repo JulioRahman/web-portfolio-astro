@@ -39,3 +39,97 @@ const { name, description, techStack, images } = Astro.props;
     </div>
   </div>
 </div>
+
+<style is:global>
+  @tailwind components;
+
+  @layer components {
+    .embla__dots {
+      @apply flex flex-wrap items-center justify-end gap-2;
+    }
+
+    .embla__dot {
+      @apply m-0 inline-flex size-4 cursor-pointer touch-manipulation appearance-none items-center justify-center rounded-full border border-zinc-500 bg-transparent p-0 dark:border-white/30;
+    }
+
+    .embla__dot:after {
+      @apply flex size-3 items-center rounded-full content-[''];
+    }
+
+    .embla__dot--selected:after {
+      @apply bg-zinc-500 dark:bg-white/50;
+    }
+  }
+</style>
+
+<script>
+  import EmblaCarousel, {
+    type EmblaCarouselType,
+    type EmblaOptionsType,
+  } from "embla-carousel";
+  import Autoplay, { type AutoplayOptionsType } from "embla-carousel-autoplay";
+
+  document.addEventListener("astro:page-load", () => {
+    const emblaNodes = [].slice.call(document.querySelectorAll(".embla"));
+    const dotsNodes = [].slice.call(document.querySelectorAll(".embla__dots"));
+    const emblaOptions: EmblaOptionsType = { loop: true };
+    const autoplayOptions: AutoplayOptionsType = { delay: 5000 };
+
+    const emblaCarousels = emblaNodes.map(function (emblaNode) {
+      return EmblaCarousel(emblaNode, emblaOptions, [
+        Autoplay(autoplayOptions),
+      ]);
+    });
+
+    const addDotBtnsAndClickHandlers = (
+      emblaApi: EmblaCarouselType,
+      dotsNode: HTMLElement,
+    ): (() => void) => {
+      let dotNodes: HTMLElement[] = [];
+
+      const addDotBtnsWithClickHandlers = (): void => {
+        dotsNode.innerHTML = emblaApi
+          .scrollSnapList()
+          .map(() => '<button class="embla__dot" type="button"></button>')
+          .join("");
+
+        const scrollTo = (index: number): void => {
+          emblaApi.scrollTo(index);
+        };
+
+        dotNodes = Array.from(dotsNode.querySelectorAll(".embla__dot"));
+        dotNodes.forEach((dotNode, index) => {
+          dotNode.addEventListener("click", () => scrollTo(index), false);
+        });
+      };
+
+      const toggleDotBtnsActive = (): void => {
+        const previous = emblaApi.previousScrollSnap();
+        const selected = emblaApi.selectedScrollSnap();
+        dotNodes[previous].classList.remove("embla__dot--selected");
+        dotNodes[selected].classList.add("embla__dot--selected");
+      };
+
+      emblaApi
+        .on("init", addDotBtnsWithClickHandlers)
+        .on("reInit", addDotBtnsWithClickHandlers)
+        .on("init", toggleDotBtnsActive)
+        .on("reInit", toggleDotBtnsActive)
+        .on("select", toggleDotBtnsActive);
+
+      return (): void => {
+        dotsNode.innerHTML = "";
+      };
+    };
+
+    dotsNodes.forEach((node, i) => {
+      if (emblaCarousels[i].scrollSnapList().length > 1) {
+        const removeDotBtnsAndClickHandlers = addDotBtnsAndClickHandlers(
+          emblaCarousels[i],
+          node,
+        );
+        emblaCarousels[i].on("destroy", removeDotBtnsAndClickHandlers);
+      }
+    });
+  });
+</script>
