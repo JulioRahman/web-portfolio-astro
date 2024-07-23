@@ -1,18 +1,29 @@
 ---
 import Carousel from "./Carousel.astro";
-import "../styles/embla.css";
 
 interface Props {
   name: string;
   description: string;
+  descriptionExpandedRawHTMLString?: string;
   techStack: string[];
   images: ImageMetadata[];
 }
 
-const { name, description, techStack, images } = Astro.props;
+const {
+  name,
+  description,
+  descriptionExpandedRawHTMLString,
+  techStack,
+  images,
+} = Astro.props;
 ---
 
-<div class="rounded-img border border-zinc-950/20 dark:border-white/20">
+<div
+  x-data="{ expanded: false }"
+  @mouseenter="expanded = true"
+  @mouseleave="expanded = false"
+  class="rounded-img border border-zinc-950/20 dark:border-white/20"
+>
   <Carousel srcs={images} />
   <div class="space-y-4 p-6">
     <div>
@@ -24,7 +35,10 @@ const { name, description, techStack, images } = Astro.props;
         </h3>
         <div class="embla__dots"></div>
       </div>
-      <p class="pt-2 text-xl">{description}</p>
+      <p class="pt-3 text-lg">{description}</p>
+      <div x-show="expanded" x-collapse class="description-expanded">
+        <Fragment set:html={descriptionExpandedRawHTMLString} />
+      </div>
     </div>
     <div>
       <ul class="mt-2 flex flex-wrap gap-2">
@@ -58,6 +72,16 @@ const { name, description, techStack, images } = Astro.props;
 
     .embla__dot--selected:after {
       @apply bg-zinc-500 dark:bg-white/50;
+    }
+
+    .description-expanded {
+      p {
+        @apply pt-3 text-lg;
+      }
+
+      ul {
+        @apply list-disc space-y-2 pl-6 pt-2 text-lg;
+      }
     }
   }
 </style>
