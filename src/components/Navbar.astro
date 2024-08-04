@@ -1,20 +1,13 @@
 ---
-import { isAvailableLanguageTag } from "../paraglide/runtime";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { languageTag } from "../paraglide/runtime";
+import { localizePathname } from "../scripts/util";
 import * as m from "../paraglide/messages.js";
-
-function removeLanguagePrefix(path: string) {
-  const [maybeLanguage, ...rest] = path.split("/").filter(Boolean);
-  return isAvailableLanguageTag(maybeLanguage) ? rest.join("/") : path;
-}
-
-const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
 ---
 
 <nav class="start-0 top-0 z-40 w-full bg-transparent md:fixed">
   <div class="mx-auto flex flex-wrap items-center justify-between p-4">
     <a
-      href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
+      href={localizePathname("/", languageTag())}
       class="flex items-center space-x-3 rtl:space-x-reverse"
       aria-label={m.juliorahman_aria_label()}
     >
@@ -29,7 +22,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
       >
         <li>
           <a
-            href={getRelativeLocaleUrl(Astro.currentLocale || "en")}
+            href={localizePathname("/", languageTag())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.projects()}
           >
@@ -54,10 +47,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
         </li>
         <li>
           <a
-            href={getRelativeLocaleUrl(
-              Astro.currentLocale || "en",
-              "/experiences",
-            )}
+            href={localizePathname("/experiences", languageTag())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.experiences()}
           >
@@ -82,7 +72,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
         </li>
         <li>
           <a
-            href={getRelativeLocaleUrl(Astro.currentLocale || "en", "/about")}
+            href={localizePathname("/about", languageTag())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.about()}
           >
@@ -180,14 +170,14 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
             >
               <li>
                 <a
-                  href={getRelativeLocaleUrl("en", currentPathWithoutLanguage)}
+                  href={localizePathname(Astro.url.pathname, "en")}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   aria-label="English">English</a
                 >
               </li>
               <li>
                 <a
-                  href={getRelativeLocaleUrl("id", currentPathWithoutLanguage)}
+                  href={localizePathname(Astro.url.pathname, "id")}
                   class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-600 dark:hover:text-white"
                   aria-label="Bahasa">Bahasa</a
                 >

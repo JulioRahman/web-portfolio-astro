@@ -4,9 +4,9 @@ import "@fontsource-variable/montagu-slab";
 import {
   languageTag,
   availableLanguageTags,
-  isAvailableLanguageTag,
+  type AvailableLanguageTag,
 } from "../paraglide/runtime";
-import { getAbsoluteLocaleUrl } from "astro:i18n";
+import { localizePathname } from "../scripts/util";
 import { ViewTransitions } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 
@@ -18,12 +18,9 @@ const { title } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-function removeLanguagePrefix(path: string) {
-  const [maybeLanguage, ...rest] = path.split("/").filter(Boolean);
-  return isAvailableLanguageTag(maybeLanguage) ? rest.join("/") : path;
+function getAlternateURL(lang: AvailableLanguageTag) {
+  return new URL(localizePathname(Astro.url.pathname, lang), Astro.site);
 }
-
-const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -42,11 +39,7 @@ const currentPathWithoutLanguage = removeLanguagePrefix(Astro.url.pathname);
 
     {
       availableLanguageTags.map((lang) => (
-        <link
-          rel="alternate"
-          hreflang={lang}
-          href={getAbsoluteLocaleUrl(lang, currentPathWithoutLanguage)}
-        />
+        <link rel="alternate" hreflang={lang} href={getAlternateURL(lang)} />
       ))
     }
 
