@@ -13,25 +13,25 @@
   "dependencies": {
     "@alpinejs/collapse": "^3.14.1",
     "@astrojs/alpinejs": "^0.4.0",
-    "@astrojs/check": "^0.9.1",
+    "@astrojs/check": "^0.9.3",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/inter": "^5.0.18",
     "@fontsource-variable/montagu-slab": "^5.0.20",
     "@hotjar/browser": "^1.0.9",
-    "@inlang/paraglide-astro": "^0.1.7",
+    "@inlang/paraglide-astro": "^0.2.2",
     "@rive-app/canvas-lite": "^2.15.4",
     "@types/alpinejs": "^3.13.10",
     "alpinejs": "^3.13.10",
-    "astro": "^4.13.1",
+    "astro": "^4.15.6",
     "embla-carousel": "^8.0.4",
     "embla-carousel-autoplay": "^8.0.4",
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@inlang/paraglide-js": "1.7.3",
+    "@inlang/paraglide-js": "1.11.2",
     "@types/alpinejs__collapse": "^3.13.4",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14"
+    "prettier-plugin-tailwindcss": "^0.6.6"
   }
 }
