@@ -1,63 +1,74 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/Experience.astro";
 import Header from "../../components/Header.astro";
-import Project from "../../components/Project.astro";
+import Layout from "../../layouts/Layout.astro";
 
-import carouselImage from "../../assets/carousel.jpg";
+import * as m from "../../paraglide/messages.js";
 
-import panintiImage1 from "../../assets/project-paninti-1.png";
-import panintiImage2 from "../../assets/project-paninti-2.png";
-import parentingHubImage1 from "../../assets/project-parenting-hub-1.png";
-import parentingHubImage2 from "../../assets/project-parenting-hub-2.png";
-import kocequImage2 from "../../assets/project-kocequ-2.png";
-import lezatImage1 from "../../assets/project-lezat-1.png";
-import lezatImage2 from "../../assets/project-lezat-2.png";
+import panintiLogo from "../../assets/logo-paninti.svg";
+import samuderaIndonesiaLogo from "../../assets/logo-samudera-indonesia.png";
+import tujuhSembilanLogo from "../../assets/logo-tujuh-sembilan.svg";
+import eudekaLogo from "../../assets/logo-eudeka.svg";
+import gitsIndonesiaLogo from "../../assets/logo-gits-indonesia.svg";
+import gitsIndonesiaLogoDark from "../../assets/logo-gits-indonesia-dark.svg";
+import bandungLocalGuidesLogo from "../../assets/logo-bandung-local-guides.svg";
 ---
 
 <Layout title="Julio Rahman">
-  <main class="p-4 md:p-10">
+  <main>
     <Header />
-    <div class="mx-auto grid max-w-4xl gap-12">
-      <Project
-        name="Paninti App"
-        description="Paninti is an online shopping platform that provides the necessities to make your life easier. Paninti offers a variety of products for the needs of mothers and children, as well as lifestyle."
-        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Google Maps, Git, Material Design 2".split(
-          ", ",
-        )}
-        images={[panintiImage1, panintiImage2]}
-      />
-      <Project
-        name="Parenting Hub"
-        description="Sosmed"
-        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Git, Material Design 2".split(
-          ", ",
-        )}
-        images={[parentingHubImage1, parentingHubImage2]}
-      />
-      <Project
-        name="Paninti Super App"
-        description="Fusion Paninti and Parenting Hub"
-        techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Git, Material Design 3".split(
-          ", ",
-        )}
-        images={[carouselImage, carouselImage, carouselImage]}
-      />
-      <Project
-        name="Kocequ"
-        description="Fintech"
-        techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Git, Biometrics, Material Design 2".split(
-          ", ",
-        )}
-        images={[kocequImage2]}
-      />
-      <Project
-        name="Lezat"
-        description="Recipe App"
-        techStack={"Kotlin, Android Jetpack, MVVM, Git, Material Design 2".split(
-          ", ",
-        )}
-        images={[lezatImage1, lezatImage2]}
-      />
-    </div>
+    <Experience
+      videoSrc="../../video-paninti.mp4"
+      logo={panintiLogo}
+      name="Paninti"
+      date={m.xp_paninti_date()}
+      description={m.xp_paninti_desc()}
+      notes={m.xp_paninti_notes()}
+      isEager
+    />
+    <Experience
+      videoSrc="../../video-samudera.mp4"
+      logo={samuderaIndonesiaLogo}
+      name="Samudera Indonesia"
+      date={m.xp_samudera_date()}
+      description={m.xp_samudera_desc()}
+      notes={m.xp_samudera_notes()}
+      isRightSide
+    />
+    <Experience
+      videoSrc="../../video-79.mp4"
+      logo={tujuhSembilanLogo}
+      name="Tujuh Sembilan (79)"
+      date={m.xp_79_date()}
+      description={m.xp_79_desc()}
+      notes={m.xp_79_notes()}
+    />
+    <Experience
+      videoSrc="../../video-gits.mp4"
+      logo={gitsIndonesiaLogo}
+      logoDark={gitsIndonesiaLogoDark}
+      name="GITS Indonesia"
+      date={m.xp_gits_date()}
+      description={m.xp_gits_desc()}
+      notes={m.xp_gits_notes()}
+      isRightSide
+    />
+    <Experience
+      videoSrc="../../video-eudeka.mp4"
+      logo={eudekaLogo}
+      name="Eudeka!"
+      date={m.xp_eudeka_date()}
+      description={m.xp_eudeka_desc()}
+      notes={m.xp_eudeka_notes()}
+    />
+    <Experience
+      videoSrc="../../video-blg.mp4"
+      logo={bandungLocalGuidesLogo}
+      name="Bandung Local Guides"
+      date={m.xp_blg_date()}
+      description={m.xp_blg_desc()}
+      notes={m.xp_blg_notes()}
+      isRightSide
+    />
   </main>
 </Layout>

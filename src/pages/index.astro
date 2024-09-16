@@ -1,65 +1,74 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Experience from "../components/Experience.astro";
 import Header from "../components/Header.astro";
-import Project from "../components/Project.astro";
+import Layout from "../layouts/Layout.astro";
 
-import carouselImage from "../assets/carousel.jpg";
+import * as m from "../paraglide/messages.js";
 
-import panintiImage1 from "../assets/project-paninti-1.png";
-import panintiImage2 from "../assets/project-paninti-2.png";
-import parentingHubImage1 from "../assets/project-parenting-hub-1.png";
-import parentingHubImage2 from "../assets/project-parenting-hub-2.png";
-import kocequImage2 from "../assets/project-kocequ-2.png";
-import lezatImage1 from "../assets/project-lezat-1.png";
-import lezatImage2 from "../assets/project-lezat-2.png";
+import panintiLogo from "../assets/logo-paninti.svg";
+import samuderaIndonesiaLogo from "../assets/logo-samudera-indonesia.png";
+import tujuhSembilanLogo from "../assets/logo-tujuh-sembilan.svg";
+import eudekaLogo from "../assets/logo-eudeka.svg";
+import gitsIndonesiaLogo from "../assets/logo-gits-indonesia.svg";
+import gitsIndonesiaLogoDark from "../assets/logo-gits-indonesia-dark.svg";
+import bandungLocalGuidesLogo from "../assets/logo-bandung-local-guides.svg";
 ---
 
 <Layout title="Julio Rahman">
-  <main class="p-4 md:p-10">
+  <main>
     <Header />
-    <div class="mx-auto grid max-w-4xl gap-12">
-      <Project
-        name="Paninti App"
-        description="Paninti is an online shopping platform offering a variety of products for mothers, children, and lifestyle needs. As my third major project at Paninti, I joined the team to refactor and develop new features for this long-running app, which had been managed by multiple developers since 2020."
-        descriptionExpandedRawHTMLString=`<p>Key Contributions:</p><ul><li>Implemented redesign and extensive refactoring</li><li>Developed new features: presale, affiliates, and fulfillment</li><li>Upgraded to modern tech stack</li><li>Utilized Airbnb/Epoxy library for efficient UI rendering</li><li>Implemented Kotlin Coroutines for improved asynchronous programming</li></ul><p>This project provided valuable experience in addressing real-life development challenges and modernizing a complex, established application.</p>`
-        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Google Maps, Material Design 2".split(
-          ", ",
-        )}
-        images={[panintiImage1, panintiImage2]}
-      />
-      <Project
-        name="Parenting Hub"
-        description="Parenting Hub is a social media and community platform for parents to share articles and experiences about parenting. This was my first project upon joining Paninti. I inherited an existing, unreleased app plagued with bugs and frequent force closes. After careful consideration, our team decided to completely rewrite the Android application."
-        descriptionExpandedRawHTMLString=`<p>Key Contributions:</p><ul><li>Participated in the complete rewrite of the Android application</li><li>Reimplemented all features from scratch</li><li>Focused on stability and performance optimization</li><li>Achieved zero force closes, significantly improving user experience</li><li>Prepared the app for successful release on the Play Store</li></ul><p>This project showcased my ability to tackle complex, existing codebases, make critical decisions for project improvement, and deliver a stable, user-friendly application from a problematic starting point.</p>`
-        techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Material Design 2".split(
-          ", ",
-        )}
-        images={[parentingHubImage1, parentingHubImage2]}
-      />
-      <Project
-        name="Paninti Super App"
-        description="Fusion Paninti and Parenting Hub"
-        techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Material Design 3".split(
-          ", ",
-        )}
-        images={[carouselImage, carouselImage, carouselImage]}
-      />
-      <Project
-        name="Kocequ"
-        description="Fintech"
-        techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Biometrics, Material Design 2".split(
-          ", ",
-        )}
-        images={[kocequImage2]}
-      />
-      <Project
-        name="Lezat"
-        description="Recipe App"
-        techStack={"Kotlin, Android Jetpack, MVVM, Material Design 2".split(
-          ", ",
-        )}
-        images={[lezatImage1, lezatImage2]}
-      />
-    </div>
+    <Experience
+      videoSrc="../video-paninti.mp4"
+      logo={panintiLogo}
+      name="Paninti"
+      date={m.xp_paninti_date()}
+      description={m.xp_paninti_desc()}
+      notes={m.xp_paninti_notes()}
+      isEager
+    />
+    <Experience
+      videoSrc="../video-samudera.mp4"
+      logo={samuderaIndonesiaLogo}
+      name="Samudera Indonesia"
+      date={m.xp_samudera_date()}
+      description={m.xp_samudera_desc()}
+      notes={m.xp_samudera_notes()}
+      isRightSide
+    />
+    <Experience
+      videoSrc="../video-79.mp4"
+      logo={tujuhSembilanLogo}
+      name="Tujuh Sembilan (79)"
+      date={m.xp_79_date()}
+      description={m.xp_79_desc()}
+      notes={m.xp_79_notes()}
+    />
+    <Experience
+      videoSrc="../video-gits.mp4"
+      logo={gitsIndonesiaLogo}
+      logoDark={gitsIndonesiaLogoDark}
+      name="GITS Indonesia"
+      date={m.xp_gits_date()}
+      description={m.xp_gits_desc()}
+      notes={m.xp_gits_notes()}
+      isRightSide
+    />
+    <Experience
+      videoSrc="../video-eudeka.mp4"
+      logo={eudekaLogo}
+      name="Eudeka!"
+      date={m.xp_eudeka_date()}
+      description={m.xp_eudeka_desc()}
+      notes={m.xp_eudeka_notes()}
+    />
+    <Experience
+      videoSrc="../video-blg.mp4"
+      logo={bandungLocalGuidesLogo}
+      name="Bandung Local Guides"
+      date={m.xp_blg_date()}
+      description={m.xp_blg_desc()}
+      notes={m.xp_blg_notes()}
+      isRightSide
+    />
   </main>
 </Layout>

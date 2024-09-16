@@ -7,9 +7,9 @@ const pathnames: Record<string, Record<AvailableLanguageTag, AbsolutePathname>> 
     en: "/",
     id: "/id"
   },
-  "/experiences": {
-    en: "/experiences",
-    id: "/id/pengalaman"
+  "/projects": {
+    en: "/projects",
+    id: "/id/proyek"
   },
   "/about": {
     en: "/about",
@@ -19,9 +19,9 @@ const pathnames: Record<string, Record<AvailableLanguageTag, AbsolutePathname>> 
     en: "/",
     id: "/id"
   },
-  "/id/pengalaman": {
-    en: "/experiences",
-    id: "/id/pengalaman"
+  "/id/proyek": {
+    en: "/projects",
+    id: "/id/proyek"
   },
   "/id/tentang": {
     en: "/about",
