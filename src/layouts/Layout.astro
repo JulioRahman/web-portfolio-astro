@@ -2,9 +2,9 @@
 import "@fontsource-variable/inter";
 import "@fontsource-variable/montagu-slab";
 import {
-  languageTag,
-  availableLanguageTags,
-  type AvailableLanguageTag,
+  getLocale,
+  locales,
+  type Locale,
 } from "../paraglide/runtime";
 import { localizePathname } from "../scripts/util";
 import { ViewTransitions } from "astro:transitions";
@@ -18,13 +18,13 @@ const { title } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-function getAlternateURL(lang: AvailableLanguageTag) {
+function getAlternateURL(lang: Locale) {
   return new URL(localizePathname(Astro.url.pathname, lang), Astro.site);
 }
 ---
 
 <!doctype html>
-<html lang={languageTag()}>
+<html lang={getLocale()}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -38,7 +38,7 @@ function getAlternateURL(lang: AvailableLanguageTag) {
     <meta name="description" content="Astro description" />
 
     {
-      availableLanguageTags.map((lang) => (
+      locales.map((lang) => (
         <link rel="alternate" hreflang={lang} href={getAlternateURL(lang)} />
       ))
     }

@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import alpinejs from "@astrojs/alpinejs";
-import paraglide from '@inlang/paraglide-astro';
+import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
@@ -14,9 +14,14 @@ export default defineConfig({
   integrations: [
     alpinejs({ entrypoint: '/src/entrypoint' }),
     tailwind(),
-    paraglide({
-      project: "./project.inlang",
-      outdir: "./src/paraglide",
-    }),
   ],
+  vite: {
+    plugins: [
+      paraglideVitePlugin({
+        project: "./project.inlang",
+        outdir: "./src/paraglide",
+        strategy: ["url", "baseLocale"],
+      }),
+    ],
+  },
 });

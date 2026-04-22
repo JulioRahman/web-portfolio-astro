@@ -1,5 +1,5 @@
 ---
-import { languageTag } from "../paraglide/runtime";
+import { getLocale } from "../paraglide/runtime";
 import { localizePathname } from "../scripts/util";
 import * as m from "../paraglide/messages.js";
 ---
@@ -7,7 +7,7 @@ import * as m from "../paraglide/messages.js";
 <nav class="start-0 top-0 z-40 w-full bg-transparent md:fixed">
   <div class="mx-auto flex flex-wrap items-center justify-between p-4">
     <a
-      href={localizePathname("/", languageTag())}
+      href={localizePathname("/", getLocale())}
       class="flex items-center space-x-3 rtl:space-x-reverse"
       aria-label={m.juliorahman_aria_label()}
     >
@@ -22,7 +22,7 @@ import * as m from "../paraglide/messages.js";
       >
         <li>
           <a
-            href={localizePathname("/", languageTag())}
+            href={localizePathname("/", getLocale())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.experiences()}
           >
@@ -47,7 +47,7 @@ import * as m from "../paraglide/messages.js";
         </li>
         <li>
           <a
-            href={localizePathname("/projects", languageTag())}
+            href={localizePathname("/projects", getLocale())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.projects()}
           >
@@ -72,7 +72,7 @@ import * as m from "../paraglide/messages.js";
         </li>
         <!-- <li>
           <a
-            href={localizePathname("/about", languageTag())}
+            href={localizePathname("/about", getLocale())}
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             aria-label={m.about()}
           >

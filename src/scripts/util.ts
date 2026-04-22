@@ -1,8 +1,8 @@
-import type { AvailableLanguageTag } from "../paraglide/runtime"
+import type { Locale } from "../paraglide/runtime"
 
 type AbsolutePathname = `/${string}`
 
-const pathnames: Record<string, Record<AvailableLanguageTag, AbsolutePathname>> = {
+const pathnames: Record<string, Record<Locale, AbsolutePathname>> = {
   "/": {
     en: "/",
     id: "/id"
@@ -31,7 +31,7 @@ const pathnames: Record<string, Record<AvailableLanguageTag, AbsolutePathname>> 
 
 export function localizePathname(
   pathname: string,
-  locale: AvailableLanguageTag
+  locale: Locale
 ) {
   if (pathnames[pathname]) {
     return pathnames[pathname][locale]
