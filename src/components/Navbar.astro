@@ -257,7 +257,7 @@ import * as m from "../paraglide/messages.js";
   bindLanguageMenus();
 
   document.addEventListener("click", (event) => {
-    if (!(event.target instanceof HTMLElement)) return;
+    if (!(event.target instanceof Element)) return;
 
     const themeButton = event.target.closest("[data-theme-toggle]");
 
