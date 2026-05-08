@@ -8,7 +8,7 @@ import {
   type Locale,
 } from "../paraglide/runtime";
 import { localizePathname } from "../scripts/util";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
 
 interface Props {
@@ -44,7 +44,7 @@ function getAlternateURL(lang: Locale) {
       ))
     }
 
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-200">
     <Navbar />
