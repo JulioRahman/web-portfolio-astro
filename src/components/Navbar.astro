@@ -95,35 +95,13 @@ import * as m from "../paraglide/messages.js";
             </svg>
           </a>
         </li> -->
-        <li
-          x-data=`{
-            open: false,
-            toggle() {
-                if (this.open) {
-                    return this.close()
-                }
- 
-                this.$refs.button.focus()
- 
-                this.open = true
-            },
-            close(focusAfter) {
-                if (! this.open) return
- 
-                this.open = false
- 
-                focusAfter && focusAfter.focus()
-            }
-          }`
-          @keydown.escape.prevent.stop="close($refs.button)"
-          @focusin.window="! $refs.panel.contains($event.target) && close()"
-          x-id="['dropdown-button']"
-        >
+        <li class="relative" data-language-menu>
           <button
-            x-ref="button"
-            @click="toggle()"
-            :aria-expanded="open"
-            :aria-controls="$id('dropdown-button')"
+            id="language-menu-button"
+            data-language-menu-button
+            aria-controls="language-menu"
+            aria-expanded="false"
+            aria-haspopup="true"
             type="button"
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             title={m.change_language_button_title()}
@@ -156,17 +134,14 @@ import * as m from "../paraglide/messages.js";
           </button>
           <!-- Dropdown menu -->
           <div
-            x-ref="panel"
-            x-show="open"
-            x-transition.origin.top.left
-            @click.outside="close($refs.button)"
-            :id="$id('dropdown-button')"
-            style="display: none;"
+            id="language-menu"
+            data-language-menu-panel
+            hidden
             class="absolute z-10 rounded-lg bg-white font-normal shadow dark:bg-zinc-700"
           >
             <ul
               class="py-2 text-sm text-zinc-700 dark:text-zinc-400"
-              aria-labelledby="dropdownLargeButton"
+              aria-labelledby="language-menu-button"
             >
               <li>
                 <a
@@ -187,14 +162,8 @@ import * as m from "../paraglide/messages.js";
         </li>
         <li>
           <button
-            x-data=`{
-              toggleTheme() {
-                const theme = localStorage.theme === "dark" ? "light" : "dark";
-                localStorage.theme = theme;
-                document.documentElement.classList.toggle("dark", theme === "dark");
-              }
-            }`
-            @click="toggleTheme()"
+            data-theme-toggle
+            type="button"
             class="block text-zinc-900 hover:text-zinc-500 dark:text-white dark:hover:text-zinc-500"
             title={m.toggle_dark_mode_button_title()}
           >
@@ -225,3 +194,107 @@ import * as m from "../paraglide/messages.js";
     </div>
   </div>
 </nav>
+
+<script>
+  const getLanguageMenuParts = (menu: HTMLElement) => {
+    const button = menu.querySelector<HTMLButtonElement>(
+      "[data-language-menu-button]",
+    );
+    const panel = menu.querySelector<HTMLElement>("[data-language-menu-panel]");
+
+    return { button, panel };
+  };
+
+  const openLanguageMenu = (menu: HTMLElement) => {
+    const { button, panel } = getLanguageMenuParts(menu);
+
+    if (!button || !panel || !panel.hidden) return;
+
+    panel.hidden = false;
+    button.setAttribute("aria-expanded", "true");
+  };
+
+  const closeLanguageMenu = (menu: HTMLElement, focusButton = false) => {
+    const { button, panel } = getLanguageMenuParts(menu);
+
+    if (!button || !panel || panel.hidden) return;
+
+    panel.hidden = true;
+    button.setAttribute("aria-expanded", "false");
+
+    if (focusButton) button.focus();
+  };
+
+  const closeOtherLanguageMenus = (target: Node) => {
+    document.querySelectorAll<HTMLElement>("[data-language-menu]").forEach(
+      (menu) => {
+        if (!menu.contains(target)) closeLanguageMenu(menu);
+      },
+    );
+  };
+
+  const bindLanguageMenus = () => {
+    document.querySelectorAll<HTMLElement>("[data-language-menu]").forEach(
+      (menu) => {
+        if (menu.dataset.languageMenuBound === "true") return;
+
+        menu.dataset.languageMenuBound = "true";
+        menu.addEventListener("mouseenter", () => openLanguageMenu(menu));
+        menu.addEventListener("mouseleave", () => closeLanguageMenu(menu));
+        menu.addEventListener("focusin", () => openLanguageMenu(menu));
+        menu.addEventListener("focusout", (event) => {
+          const nextTarget = event.relatedTarget;
+
+          if (nextTarget instanceof Node && menu.contains(nextTarget)) return;
+
+          closeLanguageMenu(menu);
+        });
+      },
+    );
+  };
+
+  document.addEventListener("astro:page-load", bindLanguageMenus);
+  bindLanguageMenus();
+
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+
+    const themeButton = event.target.closest("[data-theme-toggle]");
+
+    if (themeButton) {
+      closeOtherLanguageMenus(event.target);
+
+      const theme = localStorage.theme === "dark" ? "light" : "dark";
+      localStorage.theme = theme;
+      document.documentElement.classList.toggle("dark", theme === "dark");
+
+      return;
+    }
+
+    closeOtherLanguageMenus(event.target);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    const openMenu = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-language-menu]"),
+    ).find((menu) => {
+      const { panel } = getLanguageMenuParts(menu);
+
+      return panel && !panel.hidden;
+    });
+
+    if (!openMenu) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    closeLanguageMenu(openMenu, true);
+  });
+
+  window.addEventListener("focusin", (event) => {
+    if (!(event.target instanceof Node)) return;
+
+    closeOtherLanguageMenus(event.target);
+  });
+</script>

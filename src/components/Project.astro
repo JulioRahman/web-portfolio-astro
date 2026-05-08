@@ -19,10 +19,7 @@ const {
 ---
 
 <div
-  x-data="{ expanded: false }"
-  @mouseenter="expanded = true"
-  @mouseleave="expanded = false"
-  class="rounded-img border border-zinc-950/20 dark:border-white/20"
+  class="group rounded-img border border-zinc-950/20 dark:border-white/20"
 >
   <Carousel srcs={images} />
   <div class="space-y-4 p-6">
@@ -36,8 +33,12 @@ const {
         <div class="embla__dots"></div>
       </div>
       <p class="pt-3 text-lg">{description}</p>
-      <div x-show="expanded" x-collapse class="description-expanded">
-        <Fragment set:html={descriptionExpandedRawHTMLString} />
+      <div
+        class="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-within:grid-rows-[1fr] group-focus-within:opacity-100"
+      >
+        <div class="description-expanded overflow-hidden">
+          <Fragment set:html={descriptionExpandedRawHTMLString} />
+        </div>
       </div>
     </div>
     <div>
