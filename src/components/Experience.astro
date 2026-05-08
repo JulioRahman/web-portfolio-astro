@@ -35,6 +35,7 @@ const {
     class:list={[isRightSide ? "sm:flex-row-reverse" : "sm:flex-row"]}
   >
     <video
+      data-experience-video
       class="aspect-[4/5] min-w-[240px] rounded-img object-cover md:min-w-[320px]"
       autoplay
       disablepictureinpicture
@@ -43,7 +44,6 @@ const {
       loop
       muted
       playsinline
-      transition:persist
     >
       <source src={videoSrc} type="video/mp4" />
     </video>
@@ -91,3 +91,23 @@ const {
     </div>
   </div>
 </section>
+
+<script>
+  const resumeExperienceVideos = () => {
+    document
+      .querySelectorAll<HTMLVideoElement>("[data-experience-video]")
+      .forEach((video) => {
+        video.muted = true;
+        video.playsInline = true;
+
+        if (video.readyState === HTMLMediaElement.HAVE_NOTHING) {
+          video.load();
+        }
+
+        video.play().catch(() => {});
+      });
+  };
+
+  document.addEventListener("astro:page-load", resumeExperienceVideos);
+  resumeExperienceVideos();
+</script>
