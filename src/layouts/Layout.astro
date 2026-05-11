@@ -40,6 +40,12 @@ const { title, description, robots, seoImage, seoImageAlt, structuredData } =
     />
 
     <ClientRouter />
+    <script
+      is:inline
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="4aeb3003-1f3c-48d5-b751-b508f425fec6"
+    ></script>
   </head>
   <body class="bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-200">
     <Navbar />
@@ -58,13 +64,7 @@ const { title, description, robots, seoImage, seoImageAlt, structuredData } =
       }
     </script>
     <script>
-      import Hotjar from "@hotjar/browser";
       import { Rive } from "@rive-app/canvas-lite";
-
-      const siteId = 5025471;
-      const hotjarVersion = 6;
-
-      Hotjar.init(siteId, hotjarVersion);
 
       document.addEventListener("astro:page-load", () => {
         const r = new Rive({
