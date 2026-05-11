@@ -16,7 +16,7 @@ import lezatImage1 from "../assets/project-lezat-1.png";
 import lezatImage2 from "../assets/project-lezat-2.png";
 ---
 
-<Layout title={m.projects_s({ s: " — Julio Rahman" })}>
+<Layout title={m.seo_projects_title()} description={m.seo_projects_description()}>
   <main class="p-4 md:p-10">
     <TopTitle
       titleRawHTMLString={m.projects_top_title()}
@@ -30,7 +30,10 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Google Maps, Material Design 2".split(
           ", ",
         )}
-        images={[panintiImage1, panintiImage2]}
+        images={[
+          { src: panintiImage1, alt: "Paninti App product listing screen" },
+          { src: panintiImage2, alt: "Paninti App shopping flow screen" },
+        ]}
       />
       <Project
         name="Parenting Hub"
@@ -39,7 +42,10 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         techStack={"Kotlin, Android Jetpack, MVVM, Firebase, Material Design 2".split(
           ", ",
         )}
-        images={[parentingHubImage1, parentingHubImage2]}
+        images={[
+          { src: parentingHubImage1, alt: "Parenting Hub article feed screen" },
+          { src: parentingHubImage2, alt: "Parenting Hub community screen" },
+        ]}
       />
       <Project
         name="Paninti Super App"
@@ -47,7 +53,11 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Material Design 3".split(
           ", ",
         )}
-        images={[carouselImage, carouselImage, carouselImage]}
+        images={[
+          { src: carouselImage, alt: "Paninti Super App project preview" },
+          { src: carouselImage, alt: "Paninti Super App feature preview" },
+          { src: carouselImage, alt: "Paninti Super App mobile screen preview" },
+        ]}
       />
       <Project
         name="Kocequ"
@@ -55,7 +65,7 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Biometrics, Material Design 2".split(
           ", ",
         )}
-        images={[kocequImage2]}
+        images={[{ src: kocequImage2, alt: "Kocequ fintech app screen" }]}
       />
       <Project
         name="Lezat"
@@ -63,7 +73,10 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         techStack={"Kotlin, Android Jetpack, MVVM, Material Design 2".split(
           ", ",
         )}
-        images={[lezatImage1, lezatImage2]}
+        images={[
+          { src: lezatImage1, alt: "Lezat recipe app home screen" },
+          { src: lezatImage2, alt: "Lezat recipe detail screen" },
+        ]}
       />
     </div>
   </main>

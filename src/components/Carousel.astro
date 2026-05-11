@@ -1,11 +1,16 @@
 ---
 import { Picture } from "astro:assets";
 
-interface Props {
-  srcs: ImageMetadata[];
+interface CarouselImage {
+  src: ImageMetadata;
+  alt: string;
 }
 
-const { srcs } = Astro.props;
+interface Props {
+  images: CarouselImage[];
+}
+
+const { images } = Astro.props;
 ---
 
 <div
@@ -13,9 +18,9 @@ const { srcs } = Astro.props;
 >
   <div class="flex">
     {
-      srcs.map((src) => (
+      images.map(({ src, alt }) => (
         <div class="min-w-0 shrink-0 grow-0 basis-full">
-          <Picture src={src} class="w-full" loading="eager" alt="" />
+          <Picture src={src} class="w-full" loading="eager" alt={alt} />
         </div>
       ))
     }

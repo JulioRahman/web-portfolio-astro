@@ -2,26 +2,24 @@
 import "@fontsource-variable/inter";
 import "@fontsource-variable/montagu-slab";
 import "../styles/global.css";
-import {
-  getLocale,
-  locales,
-  type Locale,
-} from "../paraglide/runtime";
-import { localizePathname } from "../scripts/util";
+import { getLocale } from "../paraglide/runtime";
 import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
+import SeoHead from "../components/SeoHead.astro";
+
+type JsonLd = Record<string, unknown> | Record<string, unknown>[];
 
 interface Props {
   title: string;
+  description: string;
+  robots?: string;
+  seoImage?: ImageMetadata;
+  seoImageAlt?: string;
+  structuredData?: JsonLd;
 }
 
-const { title } = Astro.props;
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-function getAlternateURL(lang: Locale) {
-  return new URL(localizePathname(Astro.url.pathname, lang), Astro.site);
-}
+const { title, description, robots, seoImage, seoImageAlt, structuredData } =
+  Astro.props;
 ---
 
 <!doctype html>
@@ -32,17 +30,14 @@ function getAlternateURL(lang: Locale) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="canonical" href={canonicalURL} />
-
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content="Astro description" />
-
-    {
-      locales.map((lang) => (
-        <link rel="alternate" hreflang={lang} href={getAlternateURL(lang)} />
-      ))
-    }
+    <SeoHead
+      title={title}
+      description={description}
+      robots={robots}
+      image={seoImage}
+      imageAlt={seoImageAlt}
+      structuredData={structuredData}
+    />
 
     <ClientRouter />
   </head>

@@ -1,12 +1,17 @@
 ---
 import Carousel from "./Carousel.astro";
 
+interface ProjectImage {
+  src: ImageMetadata;
+  alt: string;
+}
+
 interface Props {
   name: string;
   description: string;
   descriptionExpandedRawHTMLString?: string;
   techStack: string[];
-  images: ImageMetadata[];
+  images: ProjectImage[];
 }
 
 const {
@@ -21,7 +26,7 @@ const {
 <div
   class="group rounded-img border border-zinc-950/20 dark:border-white/20"
 >
-  <Carousel srcs={images} />
+  <Carousel images={images} />
   <div class="space-y-4 p-6">
     <div>
       <div class="flex flex-row justify-between">

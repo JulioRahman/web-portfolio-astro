@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import * as m from "../paraglide/messages.js";
 ---
 
-<Layout title={m.about_s({ s: " — Julio Rahman" })}>
+<Layout
+  title={m.seo_about_title()}
+  description={m.seo_about_description()}
+  robots="noindex, nofollow"
+>
   <main></main>
 </Layout>

@@ -56,14 +56,14 @@ const {
               class="mx-auto block max-h-12 w-auto max-w-32 object-contain sm:mx-0 dark:hidden"
               class:list={[isRightSide && "sm:ms-auto"]}
               loading={isEager ? "eager" : "lazy"}
-              alt=""
+              alt={`${name} logo`}
             />
             <Image
               src={logoDark}
               class="mx-auto hidden max-h-12 w-auto max-w-32 object-contain sm:mx-0 dark:block"
               class:list={[isRightSide && "sm:ms-auto"]}
               loading={isEager ? "eager" : "lazy"}
-              alt=""
+              alt={`${name} logo`}
             />
           </div>
         ) : (
@@ -72,7 +72,7 @@ const {
             class="mx-auto max-h-12 w-auto max-w-32 object-contain sm:mx-0"
             class:list={[isRightSide && "sm:ms-auto"]}
             loading={isEager ? "eager" : "lazy"}
-            alt=""
+            alt={`${name} logo`}
           />
         )
       }

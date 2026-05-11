@@ -1,0 +1,103 @@
+---
+import defaultSeoImage from "../assets/header.jpg";
+import { getLocale, locales, type Locale } from "../paraglide/runtime";
+import * as m from "../paraglide/messages.js";
+import { localizePathname } from "../scripts/util";
+
+type JsonLd = Record<string, unknown> | Record<string, unknown>[];
+
+interface Props {
+  title: string;
+  description: string;
+  robots?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  structuredData?: JsonLd;
+}
+
+const {
+  title,
+  description,
+  robots = "index, follow",
+  image = defaultSeoImage,
+  imageAlt = m.seo_default_image_alt(),
+  structuredData,
+} = Astro.props;
+
+const locale = getLocale();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image.src, Astro.site);
+const homeURL = new URL("/", Astro.site);
+
+function getAlternateURL(lang: Locale) {
+  return new URL(localizePathname(Astro.url.pathname, lang), Astro.site);
+}
+
+const ogLocale = locale === "id" ? "id_ID" : "en_US";
+const alternateOgLocales = locale === "id" ? ["en_US"] : ["id_ID"];
+const defaultStructuredData: JsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Julio Rahman",
+  url: homeURL.href,
+  image: imageURL.href,
+  jobTitle: "Android Developer",
+  description,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bandung",
+    addressCountry: "ID",
+  },
+  worksFor: {
+    "@type": "Organization",
+    name: "Paninti",
+  },
+  knowsAbout: [
+    "Android development",
+    "Kotlin",
+    "Android Jetpack",
+    "Mobile app development",
+  ],
+};
+
+const jsonLd = structuredData ?? defaultStructuredData;
+---
+
+<link rel="canonical" href={canonicalURL} />
+{
+  locales.map((lang) => (
+    <link rel="alternate" hreflang={lang} href={getAlternateURL(lang)} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={getAlternateURL("en")} />
+
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Julio Rahman" />
+<meta property="og:locale" content={ogLocale} />
+{
+  alternateOgLocales.map((lang) => (
+    <meta property="og:locale:alternate" content={lang} />
+  ))
+}
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:alt" content={imageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image:alt" content={imageAlt} />
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
+></script>
