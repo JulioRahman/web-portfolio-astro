@@ -1,7 +1,9 @@
 ---
-import "@fontsource-variable/inter";
-import "@fontsource-variable/montagu-slab";
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/montagu-slab/wght.css";
 import "../styles/global.css";
+import interLatinFont from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import montaguSlabLatinFont from "@fontsource-variable/montagu-slab/files/montagu-slab-latin-wght-normal.woff2?url";
 import { getLocale } from "../paraglide/runtime";
 import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/Navbar.astro";
@@ -28,6 +30,20 @@ const { title, description, robots, seoImage, seoImageAlt, structuredData } =
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href={interLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={montaguSlabLatinFont}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="generator" content={Astro.generator} />
 
     <SeoHead
