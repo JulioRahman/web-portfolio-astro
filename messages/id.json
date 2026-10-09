@@ -1,6 +1,8 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
     "language": "Bahasa",
+    "contact_heading": "Mari terhubung",
+    "contact_new_tab": "(membuka tab baru)",
     "juliorahman_aria_label": "Website pribadi Julio Rahman",
     "projects": "Proyek",
     "projects_s": "Proyek {s}",

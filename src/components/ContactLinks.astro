@@ -1,0 +1,31 @@
+---
+import * as m from "../paraglide/messages.js";
+
+const email = "mailto:julio.rahman@gmail.com";
+const linkedIn = "https://www.linkedin.com/in/juliorahman/";
+---
+
+<div class="flex items-center justify-center gap-2 text-zinc-600 dark:text-zinc-400">
+  <a href={email}>Email</a>
+  <span aria-hidden="true">·</span>
+  <a href={linkedIn} target="_blank" rel="noopener noreferrer">
+    LinkedIn<span class="sr-only"> {m.contact_new_tab()}</span>
+  </a>
+</div>
+
+<style>
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 8px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+</style>

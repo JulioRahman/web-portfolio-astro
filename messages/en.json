@@ -1,6 +1,8 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
     "language": "English",
+    "contact_heading": "Let’s connect",
+    "contact_new_tab": "(opens in a new tab)",
     "juliorahman_aria_label": "Julio Rahman's personal website",
     "projects": "Projects",
     "projects_s": "Projects {s}",

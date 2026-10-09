@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import headerImage from "../assets/header.jpg";
 import * as m from "../paraglide/messages.js";
+import ContactLinks from "./ContactLinks.astro";
 ---
 
 <div class="mx-4 max-w-screen-lg pt-10 text-center md:pt-24 lg:mx-auto">
@@ -24,6 +25,9 @@ import * as m from "../paraglide/messages.js";
   >
     {m.xp_top_title_desc()}
   </p>
+  <div class="mt-6">
+    <ContactLinks />
+  </div>
   <div
     class="mb-32 mt-6 flex flex-row place-items-center justify-center text-xs uppercase"
   >
