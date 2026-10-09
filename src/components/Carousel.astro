@@ -8,9 +8,14 @@ interface CarouselImage {
 
 interface Props {
   images: CarouselImage[];
+  priorityFirstImage?: boolean;
 }
 
-const { images } = Astro.props;
+const { images, priorityFirstImage = false } = Astro.props;
+
+const imageWidths = [320, 480, 640, 768, 896, 1080, 1344, 1788];
+const imageSizes =
+  "(min-width: 976px) 896px, (min-width: 768px) calc(100vw - 5rem), calc(100vw - 2rem)";
 ---
 
 <div
@@ -18,11 +23,23 @@ const { images } = Astro.props;
 >
   <div class="flex">
     {
-      images.map(({ src, alt }) => (
-        <div class="min-w-0 shrink-0 grow-0 basis-full">
-          <Picture src={src} class="w-full" loading="eager" alt={alt} />
-        </div>
-      ))
+      images.map(({ src, alt }, index) => {
+        const isPriorityImage = priorityFirstImage && index === 0;
+
+        return (
+          <div class="min-w-0 shrink-0 grow-0 basis-full">
+            <Picture
+              src={src}
+              class="w-full"
+              widths={imageWidths}
+              sizes={imageSizes}
+              loading={isPriorityImage ? "eager" : "lazy"}
+              fetchpriority={isPriorityImage ? "high" : undefined}
+              alt={alt}
+            />
+          </div>
+        );
+      })
     }
   </div>
 </div>

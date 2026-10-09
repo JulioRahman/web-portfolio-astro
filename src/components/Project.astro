@@ -12,6 +12,7 @@ interface Props {
   descriptionExpandedRawHTMLString?: string;
   techStack: string[];
   images: ProjectImage[];
+  priorityImage?: boolean;
 }
 
 const {
@@ -20,21 +21,22 @@ const {
   descriptionExpandedRawHTMLString,
   techStack,
   images,
+  priorityImage = false,
 } = Astro.props;
 ---
 
 <div
   class="group rounded-img border border-zinc-950/20 dark:border-white/20"
 >
-  <Carousel images={images} />
+  <Carousel images={images} priorityFirstImage={priorityImage} />
   <div class="space-y-4 p-6">
     <div>
       <div class="flex flex-row justify-between">
-        <h3
+        <h2
           class="font-serif text-4xl font-normal text-zinc-900 dark:text-zinc-50"
         >
           {name}
-        </h3>
+        </h2>
         <div class="embla__dots"></div>
       </div>
       <p class="pt-3 text-lg">{description}</p>
@@ -120,7 +122,12 @@ const {
       const addDotBtnsWithClickHandlers = (): void => {
         dotsNode.innerHTML = emblaApi
           .scrollSnapList()
-          .map(() => '<button class="embla__dot" type="button"></button>')
+          .map(
+            (_, index, slides) =>
+              `<button class="embla__dot" type="button" aria-label="Go to slide ${
+                index + 1
+              } of ${slides.length}"></button>`,
+          )
           .join("");
 
         const scrollTo = (index: number): void => {
@@ -137,7 +144,9 @@ const {
         const previous = emblaApi.previousScrollSnap();
         const selected = emblaApi.selectedScrollSnap();
         dotNodes[previous].classList.remove("embla__dot--selected");
+        dotNodes[previous].removeAttribute("aria-current");
         dotNodes[selected].classList.add("embla__dot--selected");
+        dotNodes[selected].setAttribute("aria-current", "true");
       };
 
       emblaApi
