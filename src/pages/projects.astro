@@ -5,15 +5,12 @@ import Project from "../components/Project.astro";
 
 import * as m from "../paraglide/messages.js";
 
-import carouselImage from "../assets/carousel.jpg";
 
 import panintiImage1 from "../assets/project-paninti-1.png";
 import panintiImage2 from "../assets/project-paninti-2.png";
 import parentingHubImage1 from "../assets/project-parenting-hub-1.png";
 import parentingHubImage2 from "../assets/project-parenting-hub-2.png";
 import kocequImage2 from "../assets/project-kocequ-2.png";
-import lezatImage1 from "../assets/project-lezat-1.png";
-import lezatImage2 from "../assets/project-lezat-2.png";
 ---
 
 <Layout title={m.seo_projects_title()} description={m.seo_projects_description()}>
@@ -49,35 +46,13 @@ import lezatImage2 from "../assets/project-lezat-2.png";
         ]}
       />
       <Project
-        name="Paninti Super App"
-        description="Fusion Paninti and Parenting Hub"
-        techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Material Design 3".split(
-          ", ",
-        )}
-        images={[
-          { src: carouselImage, alt: "Paninti Super App project preview" },
-          { src: carouselImage, alt: "Paninti Super App feature preview" },
-          { src: carouselImage, alt: "Paninti Super App mobile screen preview" },
-        ]}
-      />
-      <Project
         name="Kocequ"
-        description="Fintech"
-        techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Biometrics, Material Design 2".split(
+        description="Kocequ is a digital transaction app for cooperative members and MSME communities. As an Android Developer at Praweda Ciptakarsa Informatika (Soedarpo Informatika) from January to August 2022, I developed the existing production app, implementing a homepage redesign, a merchant product catalog, and new registration flows. All these features were released before my time at the company ended."
+        descriptionExpandedRawHTMLString=`<p>January–August 2022 · Key contributions:</p><ul><li>Maintained an existing Java codebase and wrote new features in Kotlin while retaining the MVP architecture.</li><li>Contributed registration support APIs using Java Spring Boot.</li><li>Implemented a merchant catalog for displaying products, without checkout.</li><li>Resolved UI bugs and crashes, including compatibility issues on Android KitKat.</li><li>Collaborated with a backend developer and the testing team; UI/UX design and Play Store publishing were handled by others.</li></ul>`
+        techStack={"Java, Kotlin, XML, MVP, Spring Boot".split(
           ", ",
         )}
         images={[{ src: kocequImage2, alt: "Kocequ fintech app screen" }]}
-      />
-      <Project
-        name="Lezat"
-        description="Recipe App"
-        techStack={"Kotlin, Android Jetpack, MVVM, Material Design 2".split(
-          ", ",
-        )}
-        images={[
-          { src: lezatImage1, alt: "Lezat recipe app home screen" },
-          { src: lezatImage2, alt: "Lezat recipe detail screen" },
-        ]}
       />
     </div>
   </main>

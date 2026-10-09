@@ -5,15 +5,12 @@ import Project from "../../components/Project.astro";
 
 import * as m from "../../paraglide/messages.js";
 
-import carouselImage from "../../assets/carousel.jpg";
 
 import panintiImage1 from "../../assets/project-paninti-1.png";
 import panintiImage2 from "../../assets/project-paninti-2.png";
 import parentingHubImage1 from "../../assets/project-parenting-hub-1.png";
 import parentingHubImage2 from "../../assets/project-parenting-hub-2.png";
 import kocequImage2 from "../../assets/project-kocequ-2.png";
-import lezatImage1 from "../../assets/project-lezat-1.png";
-import lezatImage2 from "../../assets/project-lezat-2.png";
 ---
 
 <Layout title={m.seo_projects_title()} description={m.seo_projects_description()}>
@@ -47,35 +44,13 @@ import lezatImage2 from "../../assets/project-lezat-2.png";
         ]}
       />
       <Project
-        name="Paninti Super App"
-        description="Fusion Paninti and Parenting Hub"
-        techStack={"Kotlin, Android Jetpack, MVVM, Modularization, Firebase, Google Maps, Git, Material Design 3".split(
-          ", ",
-        )}
-        images={[
-          { src: carouselImage, alt: "Pratinjau proyek Paninti Super App" },
-          { src: carouselImage, alt: "Pratinjau fitur Paninti Super App" },
-          { src: carouselImage, alt: "Pratinjau layar mobile Paninti Super App" },
-        ]}
-      />
-      <Project
         name="Kocequ"
-        description="Fintech"
-        techStack={"Kotlin, Android Jetpack, MVP, Firebase, Google Maps, Git, Biometrics, Material Design 2".split(
+        description="Kocequ adalah aplikasi transaksi digital untuk anggota koperasi dan komunitas UMKM. Sebagai Android Developer di Praweda Ciptakarsa Informatika (Soedarpo Informatika) pada Januari–Agustus 2022, saya mengembangkan aplikasi yang sudah beroperasi: mengimplementasikan redesign homepage, katalog produk merchant, serta alur registrasi baru. Seluruh fitur tersebut telah dirilis sebelum masa kerja saya berakhir."
+        descriptionExpandedRawHTMLString=`<p>Januari–Agustus 2022 · Kontribusi utama:</p><ul><li>Melanjutkan codebase Java dan menulis fitur baru menggunakan Kotlin dengan tetap mempertahankan arsitektur MVP.</li><li>Membantu pengembangan API pendukung registrasi menggunakan Java Spring Boot.</li><li>Mengimplementasikan katalog merchant untuk menampilkan produk, tanpa checkout.</li><li>Menangani bug tampilan dan crash, termasuk masalah kompatibilitas pada Android KitKat.</li><li>Bekerja bersama developer backend dan tim pengujian; desain UI/UX dan publikasi ke Play Store ditangani oleh rekan lain.</li></ul>`
+        techStack={"Java, Kotlin, XML, MVP, Spring Boot".split(
           ", ",
         )}
         images={[{ src: kocequImage2, alt: "Tampilan aplikasi fintech Kocequ" }]}
-      />
-      <Project
-        name="Lezat"
-        description="Recipe App"
-        techStack={"Kotlin, Android Jetpack, MVVM, Git, Material Design 2".split(
-          ", ",
-        )}
-        images={[
-          { src: lezatImage1, alt: "Tampilan beranda aplikasi resep Lezat" },
-          { src: lezatImage2, alt: "Tampilan detail resep Lezat" },
-        ]}
       />
     </div>
   </main>
