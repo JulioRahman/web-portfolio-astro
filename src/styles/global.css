@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "Montagu Slab Variable", ui-serif, Georgia, Cambria,
-    "Times New Roman", Times, serif;
+  --font-sans:
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif:
+    "Montagu Slab Variable", ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
   --radius-img: 32px;
 }
 
