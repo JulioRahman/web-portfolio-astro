@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  videoSrc: string;
+  videoName: string;
   logo: ImageMetadata;
   logoDark?: ImageMetadata;
   name: string;
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-  videoSrc,
+  videoName,
   logo,
   logoDark = null,
   name,
@@ -35,18 +35,19 @@ const {
     class:list={[isRightSide ? "sm:flex-row-reverse" : "sm:flex-row"]}
   >
     <video
-      data-experience-video
+      data-experience-video={`/video-${videoName}.mp4`}
+      poster={`/video-${videoName}.webp`}
       class="aspect-[4/5] min-w-[240px] rounded-img object-cover md:min-w-[320px]"
-      autoplay
+      width="320"
+      height="400"
+      preload="none"
       disablepictureinpicture
       disableRemotePlayback
       x-webkit-airplay="deny"
       loop
       muted
       playsinline
-    >
-      <source src={videoSrc} type="video/mp4" />
-    </video>
+    ></video>
     <div class="mx-8 mt-0 space-y-4 sm:mx-0 sm:mt-8">
       {
         logoDark ? (
@@ -93,21 +94,48 @@ const {
 </section>
 
 <script>
-  const resumeExperienceVideos = () => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let observer: IntersectionObserver | undefined;
+
+  function stopExperienceVideos() {
+    observer?.disconnect();
+    observer = undefined;
+
     document
       .querySelectorAll<HTMLVideoElement>("[data-experience-video]")
-      .forEach((video) => {
-        video.muted = true;
-        video.playsInline = true;
+      .forEach((video) => video.pause());
+  }
 
-        if (video.readyState === HTMLMediaElement.HAVE_NOTHING) {
-          video.load();
+  function observeExperienceVideos() {
+    stopExperienceVideos();
+    if (reducedMotion.matches) return;
+
+    const videos = document.querySelectorAll<HTMLVideoElement>(
+      "[data-experience-video]",
+    );
+    if (!videos.length) return;
+
+    const minimumVisibility = 0.25;
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const video = entry.target as HTMLVideoElement;
+          const src = video.dataset.experienceVideo;
+
+          if (entry.intersectionRatio < minimumVisibility) {
+            video.pause();
+          } else if (src) {
+            if (!video.hasAttribute("src")) video.src = src;
+            video.play().catch(() => {});
+          }
         }
+      },
+      { threshold: minimumVisibility },
+    );
+    videos.forEach((video) => observer?.observe(video));
+  }
 
-        video.play().catch(() => {});
-      });
-  };
-
-  document.addEventListener("astro:page-load", resumeExperienceVideos);
-  resumeExperienceVideos();
+  document.addEventListener("astro:before-swap", stopExperienceVideos);
+  document.addEventListener("astro:page-load", observeExperienceVideos);
+  reducedMotion.addEventListener("change", observeExperienceVideos);
 </script>
