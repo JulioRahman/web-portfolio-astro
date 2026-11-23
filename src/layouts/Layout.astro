@@ -57,6 +57,26 @@ const { title, description, robots, seoImage, seoImageAlt, structuredData } =
       structuredData={structuredData}
     />
 
+    <script is:inline>
+      (() => {
+        const applyTheme = (root = document.documentElement) => {
+          const isDark =
+            localStorage.theme === "dark" ||
+            (!("theme" in localStorage) &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          root.classList.toggle("dark", isDark);
+          localStorage.theme = isDark ? "dark" : "light";
+        };
+
+        applyTheme();
+
+        if (window.__themeSwapListenerBound) return;
+        window.__themeSwapListenerBound = true;
+        document.addEventListener("astro:before-swap", (event) =>
+          applyTheme(event.newDocument.documentElement),
+        );
+      })();
+    </script>
     <ClientRouter />
     <script
       is:inline
@@ -74,19 +94,6 @@ const { title, description, robots, seoImage, seoImageAlt, structuredData } =
       </h2>
       <ContactLinks />
     </footer>
-    <script is:inline data-astro-rerun>
-      if (
-        localStorage.theme === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-        localStorage.theme = "dark";
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.theme = "light";
-      }
-    </script>
     <script>
       import { Rive } from "@rive-app/canvas-lite";
 
