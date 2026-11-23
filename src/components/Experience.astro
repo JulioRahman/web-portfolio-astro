@@ -34,20 +34,31 @@ const {
     class="mx-0 flex flex-col items-center justify-center gap-6 sm:mx-8 sm:items-start sm:gap-12"
     class:list={[isRightSide ? "sm:flex-row-reverse" : "sm:flex-row"]}
   >
-    <video
-      data-experience-video={`/video-${videoName}.mp4`}
-      poster={`/video-${videoName}.webp`}
-      class="aspect-[4/5] min-w-[240px] rounded-img object-cover md:min-w-[320px]"
-      width="320"
-      height="400"
-      preload="none"
-      disablepictureinpicture
-      disableRemotePlayback
-      x-webkit-airplay="deny"
-      loop
-      muted
-      playsinline
-    ></video>
+    <div
+      class="relative aspect-[4/5] w-80 max-w-full min-w-[240px] overflow-hidden rounded-img md:min-w-[320px]"
+    >
+      <video
+        data-experience-video={`/video-${videoName}.mp4`}
+        class="size-full object-cover"
+        width="320"
+        height="400"
+        preload="none"
+        disablepictureinpicture
+        disableRemotePlayback
+        x-webkit-airplay="deny"
+        loop
+        muted
+        playsinline
+      ></video>
+      <img
+        data-experience-poster
+        src={`/video-${videoName}.webp`}
+        alt=""
+        class="pointer-events-none absolute inset-0 size-full object-cover"
+        width="320"
+        height="400"
+      />
+    </div>
     <div class="mx-8 mt-0 space-y-4 sm:mx-0 sm:mt-8">
       {
         logoDark ? (
@@ -106,6 +117,26 @@ const {
       .forEach((video) => video.pause());
   }
 
+  function loadExperienceVideo(video: HTMLVideoElement, src: string) {
+    const poster = video.parentElement?.querySelector<HTMLImageElement>(
+      "[data-experience-poster]",
+    );
+
+    if (poster) {
+      const hidePoster = () => {
+        poster.hidden = true;
+      };
+
+      if ("requestVideoFrameCallback" in HTMLVideoElement.prototype) {
+        video.requestVideoFrameCallback(hidePoster);
+      } else {
+        video.addEventListener("playing", hidePoster, { once: true });
+      }
+    }
+
+    video.src = src;
+  }
+
   function observeExperienceVideos() {
     stopExperienceVideos();
     if (reducedMotion.matches) return;
@@ -125,7 +156,7 @@ const {
           if (entry.intersectionRatio < minimumVisibility) {
             video.pause();
           } else if (src) {
-            if (!video.hasAttribute("src")) video.src = src;
+            if (!video.hasAttribute("src")) loadExperienceVideo(video, src);
             video.play().catch(() => {});
           }
         }
