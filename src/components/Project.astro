@@ -65,6 +65,8 @@ const {
 <style is:global>
   @reference "../styles/global.css";
 
+  @layer theme, base, components, utilities;
+
   @layer components {
     .embla__dots {
       @apply flex flex-wrap items-center justify-end gap-2;
