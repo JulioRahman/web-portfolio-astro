@@ -1,0 +1,22 @@
+---
+import Project from "../components/Project.astro";
+import TopTitle from "../components/TopTitle.astro";
+import { getProjects } from "../data/projects";
+import Layout from "../layouts/Layout.astro";
+import * as m from "../paraglide/messages.js";
+import { getLocale } from "../paraglide/runtime";
+---
+
+<Layout title={m.seo_projects_title()} description={m.seo_projects_description()}>
+  <main class="p-4 md:p-10">
+    <TopTitle
+      titleRawHTMLString={m.projects_top_title()}
+      description={m.projects_top_title_desc()}
+    />
+    <div class="mx-auto grid max-w-4xl gap-12">
+      {
+        getProjects(getLocale()).map((project) => <Project {...project} />)
+      }
+    </div>
+  </main>
+</Layout>

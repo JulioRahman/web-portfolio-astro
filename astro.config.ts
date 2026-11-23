@@ -2,33 +2,9 @@ import { defineConfig } from "astro/config";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
+import { getLocalizedPathnames } from "./src/scripts/util";
 
 const site = "https://juliorahman.dev";
-
-const sitemapAlternates: Record<string, { lang: string; url: string }[]> = {
-  "/": [
-    { lang: "en", url: `${site}/` },
-    { lang: "id", url: `${site}/id` },
-    { lang: "x-default", url: `${site}/` },
-  ],
-  "/id": [
-    { lang: "en", url: `${site}/` },
-    { lang: "id", url: `${site}/id` },
-    { lang: "x-default", url: `${site}/` },
-  ],
-  "/projects": [
-    { lang: "en", url: `${site}/projects` },
-    { lang: "id", url: `${site}/id/proyek` },
-    { lang: "x-default", url: `${site}/projects` },
-  ],
-  "/id/proyek": [
-    { lang: "en", url: `${site}/projects` },
-    { lang: "id", url: `${site}/id/proyek` },
-    { lang: "x-default", url: `${site}/projects` },
-  ],
-};
-
-const excludedSitemapPathnames = new Set(["/about", "/id/tentang"]);
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,18 +16,27 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) =>
-        !excludedSitemapPathnames.has(new URL(page).pathname),
       namespaces: {
         news: false,
         xhtml: true,
         image: false,
         video: false,
       },
-      serialize: (item) => ({
-        ...item,
-        links: sitemapAlternates[new URL(item.url).pathname],
-      }),
+      serialize: (item) => {
+        const paths = getLocalizedPathnames(new URL(item.url).pathname);
+        if (!paths) return item;
+
+        return {
+          ...item,
+          links: [
+            ...Object.entries(paths).map(([lang, path]) => ({
+              lang,
+              url: new URL(path, site).href,
+            })),
+            { lang: "x-default", url: new URL(paths.en, site).href },
+          ],
+        };
+      },
     }),
   ],
   vite: {
