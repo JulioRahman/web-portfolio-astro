@@ -102,6 +102,7 @@ const {
     type EmblaOptionsType,
   } from "embla-carousel";
   import Autoplay, { type AutoplayOptionsType } from "embla-carousel-autoplay";
+  import { projects_carousel_slide } from "../paraglide/messages.js";
 
   document.addEventListener("astro:page-load", () => {
     const emblaNodes = [].slice.call(document.querySelectorAll(".embla"));
@@ -122,24 +123,18 @@ const {
       let dotNodes: HTMLElement[] = [];
 
       const addDotBtnsWithClickHandlers = (): void => {
-        dotsNode.innerHTML = emblaApi
-          .scrollSnapList()
-          .map(
-            (_, index, slides) =>
-              `<button class="embla__dot" type="button" aria-label="Go to slide ${
-                index + 1
-              } of ${slides.length}"></button>`,
-          )
-          .join("");
-
-        const scrollTo = (index: number): void => {
-          emblaApi.scrollTo(index);
-        };
-
-        dotNodes = Array.from(dotsNode.querySelectorAll(".embla__dot"));
-        dotNodes.forEach((dotNode, index) => {
-          dotNode.addEventListener("click", () => scrollTo(index), false);
+        dotNodes = emblaApi.scrollSnapList().map((_, index, slides) => {
+          const button = document.createElement("button");
+          button.className = "embla__dot";
+          button.type = "button";
+          button.setAttribute(
+            "aria-label",
+            projects_carousel_slide({ slide: index + 1, total: slides.length }),
+          );
+          button.addEventListener("click", () => emblaApi.scrollTo(index));
+          return button;
         });
+        dotsNode.replaceChildren(...dotNodes);
       };
 
       const toggleDotBtnsActive = (): void => {
