@@ -1,0 +1,67 @@
+import * as m from "../paraglide/messages.js";
+
+import panintiLogo from "../assets/logo-paninti.svg";
+import samuderaIndonesiaLogo from "../assets/logo-samudera-indonesia.png";
+import tujuhSembilanLogo from "../assets/logo-tujuh-sembilan.svg";
+import eudekaLogo from "../assets/logo-eudeka.svg";
+import gitsIndonesiaLogo from "../assets/logo-gits-indonesia.svg";
+import gitsIndonesiaLogoDark from "../assets/logo-gits-indonesia-dark.svg";
+import bandungLocalGuidesLogo from "../assets/logo-bandung-local-guides.svg";
+
+export function getExperiences() {
+  return [
+    {
+      videoName: "paninti",
+      logo: panintiLogo,
+      name: "Paninti",
+      date: m.xp_paninti_date(),
+      description: m.xp_paninti_desc(),
+      notes: m.xp_paninti_notes(),
+      isEager: true,
+    },
+    {
+      videoName: "samudera",
+      logo: samuderaIndonesiaLogo,
+      name: "Samudera Indonesia",
+      date: m.xp_samudera_date(),
+      description: m.xp_samudera_desc(),
+      notes: m.xp_samudera_notes(),
+      isRightSide: true,
+    },
+    {
+      videoName: "79",
+      logo: tujuhSembilanLogo,
+      name: "Tujuh Sembilan (79)",
+      date: m.xp_79_date(),
+      description: m.xp_79_desc(),
+      notes: m.xp_79_notes(),
+    },
+    {
+      videoName: "gits",
+      logo: gitsIndonesiaLogo,
+      logoDark: gitsIndonesiaLogoDark,
+      name: "GITS Indonesia",
+      date: m.xp_gits_date(),
+      description: m.xp_gits_desc(),
+      notes: m.xp_gits_notes(),
+      isRightSide: true,
+    },
+    {
+      videoName: "eudeka",
+      logo: eudekaLogo,
+      name: "Eudeka!",
+      date: m.xp_eudeka_date(),
+      description: m.xp_eudeka_desc(),
+      notes: m.xp_eudeka_notes(),
+    },
+    {
+      videoName: "blg",
+      logo: bandungLocalGuidesLogo,
+      name: "Bandung Local Guides",
+      date: m.xp_blg_date(),
+      description: m.xp_blg_desc(),
+      notes: m.xp_blg_notes(),
+      isRightSide: true,
+    },
+  ];
+}

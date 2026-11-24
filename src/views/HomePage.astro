@@ -1,0 +1,16 @@
+---
+import Experience from "../components/Experience.astro";
+import Header from "../components/Header.astro";
+import { getExperiences } from "../data/experiences";
+import Layout from "../layouts/Layout.astro";
+import * as m from "../paraglide/messages.js";
+---
+
+<Layout title={m.seo_home_title()} description={m.seo_home_description()}>
+  <main>
+    <Header />
+    {
+      getExperiences().map((experience) => <Experience {...experience} />)
+    }
+  </main>
+</Layout>

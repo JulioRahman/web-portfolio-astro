@@ -2,36 +2,18 @@ import type { Locale } from "../paraglide/runtime";
 
 type AbsolutePathname = `/${string}`;
 
-const pathnames: Record<string, Record<Locale, AbsolutePathname>> = {
-  "/": {
-    en: "/",
-    id: "/id",
-  },
-  "/projects": {
-    en: "/projects",
-    id: "/id/proyek",
-  },
-  "/about": {
-    en: "/about",
-    id: "/id/tentang",
-  },
-  "/id": {
-    en: "/",
-    id: "/id",
-  },
-  "/id/proyek": {
-    en: "/projects",
-    id: "/id/proyek",
-  },
-  "/id/tentang": {
-    en: "/about",
-    id: "/id/tentang",
-  },
-};
+const home: Record<Locale, AbsolutePathname> = { en: "/", id: "/id" };
+const pathnames: Record<Locale, AbsolutePathname>[] = [
+  home,
+  { en: "/projects", id: "/id/proyek" },
+];
+
+export function getLocalizedPathnames(pathname: string) {
+  return pathnames.find((paths) =>
+    Object.values(paths).some((path) => path === pathname),
+  );
+}
 
 export function localizePathname(pathname: string, locale: Locale) {
-  if (pathnames[pathname]) {
-    return pathnames[pathname][locale];
-  }
-  return pathnames["/"][locale];
+  return (getLocalizedPathnames(pathname) ?? home)[locale];
 }
