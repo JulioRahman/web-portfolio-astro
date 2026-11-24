@@ -141,8 +141,17 @@ const {
     stopExperienceVideos();
     if (reducedMotion.matches) return;
 
-    const videos = document.querySelectorAll<HTMLVideoElement>(
-      "[data-experience-video]",
+    // ClientRouter parses the next page with DOMParser and adopts its body,
+    // so these videos were created in an inert document. Desktop Safari can
+    // then play them without painting frames; clones belong to this document.
+    const videos = Array.from(
+      document.querySelectorAll<HTMLVideoElement>("[data-experience-video]"),
+      (video) => {
+        if (video.hasAttribute("src")) return video;
+        const freshVideo = video.cloneNode(true) as HTMLVideoElement;
+        video.replaceWith(freshVideo);
+        return freshVideo;
+      },
     );
     if (!videos.length) return;
 
